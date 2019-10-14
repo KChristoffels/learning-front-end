@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Test variables, data types and create a table with javascript</title>
+</head>
+<body onload='main()'>
+    <p>The content of this table was created with javascript</p>
+
+        <table id='tbl' border=1></table>
+
+</body>
+<script type="text/javascript">
+
+    const car = {type:"Lamborghini", model:"Murcielago", color:"black"}; 
+    // changing car directly "car = {type:"fiat", model: "punto", color:"red}" is not allowed.
+    // changing its properties is allowed with for example car.color = "red";
+
+    var x = 5; // x's value is 5 here  
+    console.log(x);
+
+    function myFunction() {
+        let x = 10;
+        console.log(x); // x's value is 10 inside this scope (block scope)
+    }
+    myFunction();    
+    
+    console.dir(car);
+
+    var a = 120; // number variable, anything from an integer to a float
+    var b = false; //b has a standard value of false. My function will change it to true depending on input
+
+    function isGreaterThen120 (n) {
+        if (n>a) {
+           b= true;
+           return b; 
+        }
+        return b;
+    }
+    console.log(isGreaterThen120 (110));
+
+    var c = "random text"; // string is text. It can contain letters, numbers and signs. "" are required.
+    console.log(c);
+
+    var hobbies = ["football", "weightlifting", "swimming"]; // stores multiple variables into a single one
+    console.log(hobbies[0]);
+
+    var d = 13;
+    var e = 94;
+    var f = 55;
+
+
+    function addCell(tr, val){
+        var td = document.createElement('td');
+
+        td.innerHTML = val;
+        tr.appendChild(td);
+    }
+    
+    function addRow (tbl, val_1, val_2, val_3, val_4){
+        var tr = document.createElement('tr');
+
+        addCell(tr, val_1);
+        addCell(tr, val_2);
+        addCell(tr, val_3);
+        addCell(tr, val_4);
+
+        tbl.appendChild(tr);
+    }
+
+    function main() {        
+        tbl = document.getElementById('tbl');
+
+        addRow(tbl, 1 + 'five', d += 4, hobbies[1], e %= 2);
+        addRow(tbl, 'fiftyfive' + f, isGreaterThen120(140), hobbies[2], d--)
+    }
+
+
+
+</script>
+</html>
