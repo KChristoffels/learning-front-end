@@ -70,6 +70,7 @@
         else {
             p2value = choices[Math.floor(Math.random()*choices.length)];
             showWinner1player(p2value);
+            alert(`Computer chose ${p2value}`);         
         }
     }
     function changeGame(event){
@@ -82,20 +83,21 @@
     }
 
     function scorekeeper(){
+        let p2value = p2choice.value;
+
         switch (document.getElementById("result").innerHTML){
             case "Player 1 wins": 
                         document.getElementById("player1").innerHTML= ++player1Score;
                         break;
             case "Player 2 wins":
                         document.getElementById("player2").innerHTML= ++player2Score;
-            case "Computer wins":
-                        alert(`Computer chose ${p2choice.value}`);
-                        document.getElementById("computer").innerHTML= ++computerScore
+                        break;
+            case "Computer wins":                        
+                        document.getElementById("computer").innerHTML= ++computerScore;
             default:
         }       
         
     }
-
     
 
     function showWinner() {
@@ -180,10 +182,9 @@
                     break;
             default: 
                     document.getElementById("result").innerHTML= "Player 1 wins";
+
         }         
-
-        scorekeeper();     
-
+        scorekeeper();
     }
 </script>
 </body>
