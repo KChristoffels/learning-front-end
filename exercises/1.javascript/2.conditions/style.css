@@ -11,4 +11,12 @@ td {
 #result {
     text-align: center;
     font-size: 30px;
+    height: 30px;
+}
+#computerChoice {
+    text-align: center;
+    height: 30px;
+}
+#p2choice {
+    margin-bottom: 30px;
 }

@@ -32,6 +32,7 @@
 <button id="reset"> Reset score</button>
 
 <div id="result"></div>
+<div id="computerChoice"></div>
 
 <table id="scoreboard">
     <tr><td>Player 1</td><td>Player2</td><td>Computer</td></tr>
@@ -75,7 +76,7 @@
         else {
             p2value = choices[Math.floor(Math.random()*choices.length)];
             showWinner1player(p2value);
-            alert(`Computer chose ${p2value}`);         
+            document.getElementById("computerChoice").innerHTML= `Computer chose ${p2value}`;         
         }
     }
 
@@ -86,6 +87,8 @@
         document.getElementById("player1").innerHTML= 0;          
         document.getElementById("player2").innerHTML= 0;                                                
         document.getElementById("computer").innerHTML= 0;
+        document.getElementById("computerChoice").innerHTML= "";
+        document.getElementById("result").innerHTML= "";
     }
 
     function changeGame(event){
