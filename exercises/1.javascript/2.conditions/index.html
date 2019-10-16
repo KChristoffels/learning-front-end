@@ -94,9 +94,11 @@
     function changeGame(event){
         if (players.value === "1") {
             p2choice.disabled = true;
+            resetGame();
         }
         else {
             p2choice.disabled = false;
+            resetGame();
         }
     }
 
