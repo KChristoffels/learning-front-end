@@ -46,7 +46,7 @@
     players.addEventListener("change", changeGame);
     let p1choice = document.getElementById("p1choice");
     let p2choice = document.getElementById("p2choice");
-    let choices = ["rock", "paper", "scissors"];
+    let choices = ["rock", "paper", "scissors", "spock", "lizard"];
     for (choice of choices) {
         let element = document.createElement("option");
         element.value = choice;
@@ -99,28 +99,40 @@
         let p1value = p1choice.value;
         let p2value = p2choice.value; 
 
-        if (p1value == p2value) {
-            console.log("Draw");
-            document.getElementById("result").innerHTML= "Draw";
-        } else if ((p1value == "rock") && (p2value == "paper")) {
-            console.log("Player 2 wins");
-            document.getElementById("result").innerHTML= "Player 2 wins";
-        } else if ((p1value == "paper") && (p2value == "rock")) {
-            console.log("Player 1 wins");
-            document.getElementById("result").innerHTML= "Player 1 wins";
-        } else if ((p1value == "rock") && (p2value == "scissors")) {
-            console.log("Player 1 wins");
-            document.getElementById("result").innerHTML= "Player 1 wins";
-        }  else if ((p1value == "scissors") && (p2value == "rock")) {
-            console.log("Player 2 wins");
-            document.getElementById("result").innerHTML= "Player 2 wins";
-        } else if ((p1value == "paper") && (p2value == "scissors")) {
-            console.log("Player 2 wins");
-            document.getElementById("result").innerHTML= "Player 2 wins";
-        } else  {
-            console.log("Player 1 wins");
-            document.getElementById("result").innerHTML= "Player 1 wins";
-        }
+        switch (true) {
+            case p1value == p2value:                    
+                    document.getElementById("result").innerHTML= "Draw";
+                    break;
+            case ((p1value == "rock") && ((p2value == "paper") || (p2value == "spock"))):                    
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            case ((p1value == "paper") && ((p2value == "rock") || (p2value == "spock"))):      
+                    document.getElementById("result").innerHTML= "Player 1 wins";
+                    break;
+            case ((p1value == "rock") && ((p2value == "scissors") || (p2value == "lizard"))):
+                    document.getElementById("result").innerHTML= "Player 1 wins";
+                    break;
+            case ((p1value == "scissors") && ((p2value == "rock") || (p2value == "spock"))):                    
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            case ((p1value == "paper") && ((p2value == "scissors") || (p2value == "lizard"))):                    
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            case ((p1value == "spock") && ((p2value == "lizard") || (p2value == "paper"))):                    
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            case ((p1value == "spock") && ((p2value == "rock") || (p2value == "scissors"))):                    
+                    document.getElementById("result").innerHTML= "Player 1 wins";
+                    break;
+            case ((p1value == "lizard") && ((p2value == "spock") || (p2value == "paper"))):                    
+                    document.getElementById("result").innerHTML= "Player 1 wins";
+                    break;
+            case ((p1value == "lizard") && ((p2value == "rock") || (p2value == "scissors"))):                    
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            default: 
+                    document.getElementById("result").innerHTML= "Player 1 wins";
+        } 
 
         scorekeeper();     
         
@@ -131,11 +143,34 @@
         let p1value = p1choice.value;
         let computerResult = p2value; 
 
+        switch (true) {
+            case p1value == computerResult:                    
+                    document.getElementById("result").innerHTML= "Draw";
+                    break;
+            case ((p1value == "rock") && (computerResult == "paper")):
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            case ((p1value == "paper") && (computerResult == "rock")):
+                    document.getElementById("result").innerHTML= "Player 1 wins";
+                    break;
+            case ((p1value == "rock") && (computerResult == "scissors")):
+                    document.getElementById("result").innerHTML= "Player 1 wins";
+                    break;
+            case ((p1value == "scissors") && (computerResult == "rock")):
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            case ((p1value == "paper") && (computerResult == "scissors")):
+                    document.getElementById("result").innerHTML= "Player 2 wins";
+                    break;
+            default:    console.log("Player 1 wins");
+                        document.getElementById("result").innerHTML= "Player 1 wins";
+        }
+
         if (p1value == p2value) {
             console.log("Draw");
             document.getElementById("result").innerHTML= "Draw";
         } else if ((p1value == "rock") && (computerResult == "paper")) {
-            console.log("Player 2 wins");
+            console.log("Computer wins");
             document.getElementById("result").innerHTML= "Player 2 wins";
         } else if ((p1value == "paper") && (computerResult == "rock")) {
             console.log("Player 1 wins");
@@ -144,10 +179,10 @@
             console.log("Player 1 wins");
             document.getElementById("result").innerHTML= "Player 1 wins";
         }  else if ((p1value == "scissors") && (computerResult == "rock")) {
-            console.log("Player 2 wins");
+            console.log("Computer wins");
             document.getElementById("result").innerHTML= "Player 2 wins";
         } else if ((p1value == "paper") && (computerResult == "scissors")) {
-            console.log("Player 2 wins");
+            console.log("Computer wins");
             document.getElementById("result").innerHTML= "Player 2 wins";
         } else  {
             console.log("Player 1 wins");
