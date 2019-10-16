@@ -3,20 +3,76 @@ body {
 }
 table {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 30px;   
+    background-color: gray;
+
 }
 td {
-    padding-left: 10px;    
+    padding: 30px;
+    border: 1px solid black;
+    text-align: center;   
 }
 #result {
     text-align: center;
     font-size: 30px;
     height: 30px;
+    width: 150px;
 }
 #computerChoice {
     text-align: center;
     height: 30px;
+    width: 150px;
 }
 #p2choice {
     margin-bottom: 30px;
 }
+button {
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;  
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 50%;
+  width: 125px;
+  height: 125px;
+}
+button:hover {
+    background-color: black;
+}
+.playContainer {    
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    height: 150px;
+}
+
+#reset {
+    justify-self: flex-end;
+    margin-left: 70px;
+}
+#play {
+    justify-self: flex-start;
+    margin-right: 70px;
+}
+.displayResult {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    white-space:nowrap;
+    width: 300px;
+}
+.tableSorter {
+    display: flex;
+    justify-content: center;
+}
+.playerAmount {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+
+

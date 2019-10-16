@@ -6,38 +6,50 @@
     <title>Rock, paper, scissors, ...</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-<body>
-<h1>Rock, Paper, Scissors....</h1>
-<h2>Lizard, Spock!</h2>
+<body>   
+    <div> 
+        <h1>Rock, Paper, Scissors....</h1>
+        <h2>Lizard, Spock!</h2>
 
-<div>
-    <h3>Amount of players</h3>
-    <select name="players" id="players">
-        <option value="1">1 Player</option>
-        <option value="2">2 Players</option>
-    </select>
-</div>
+        <div>
+            <h3>Amount of players</h3>
+            <select name="players" id="players">
+                <option value="1">1 Player</option>
+                <option value="2">2 Players</option>
+            </select>
+        </div>
+    </div> 
 
-<div>
-    <h3>Player 1</h3>
-    <select name="p1choice" id="p1choice"></select>
-</div>
+    <div class="playerAmount">
+        <div>
+            <h3>Player 1</h3>
+            <select name="p1choice" id="p1choice"></select>
+        </div>
 
-<div>
-    <h3>Player 2</h3>
-    <select name="p2choice" id="p2choice" disabled></select>
-</div>
+        <div class="tableSorter">
+                <table id="scoreboard">
+                    <tr><td>Player 1</td><td>Player 2</td><td>Computer</td></tr>
+                    <tr><td id="player1">0</td><td id="player2">0</td><td id="computer">0</td></tr>
+                </table>
+            </div>
 
-<button id="play">Play</button>
-<button id="reset"> Reset score</button>
+        <div>
+            <h3>Player 2</h3>
+            <select name="p2choice" id="p2choice" disabled></select>
+        </div>
+    </div> 
 
-<div id="result"></div>
-<div id="computerChoice"></div>
+    <div class="playContainer">
+        <button id="play">Play</button>
+        <div class="displayResult">
+            <div id="result"></div>
+            <div id="computerChoice"></div>
+        </div>
+        <button id="reset"> Reset score</button>
+    </div>
+    
 
-<table id="scoreboard">
-    <tr><td>Player 1</td><td>Player2</td><td>Computer</td></tr>
-    <tr><td id="player1">0</td><td id="player2">0</td><td id="computer">0</td></tr>
-</table>
+    
 
 <script>
     var player1Score = 0;
