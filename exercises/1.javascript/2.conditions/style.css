@@ -1,0 +1,14 @@
+body {
+    background-color: lightgray;
+}
+table {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+td {
+    padding-left: 10px;    
+}
+#result {
+    text-align: center;
+    font-size: 30px;
+}

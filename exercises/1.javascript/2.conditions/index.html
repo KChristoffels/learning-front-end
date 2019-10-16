@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, paper, scissors, ...</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <h1>Rock, Paper, Scissors....</h1>
@@ -48,6 +49,7 @@
     players.addEventListener("change", changeGame);
     let resetScore = document.getElementById("reset");
     resetScore.addEventListener("click", resetGame);
+
     let p1choice = document.getElementById("p1choice");
     let p2choice = document.getElementById("p2choice");
     let choices = ["rock", "paper", "scissors", "spock", "lizard"];
@@ -96,7 +98,7 @@
     }
 
     function scorekeeper(){
-        let p2value = p2choice.value;
+        
 
         switch (document.getElementById("result").innerHTML){
             case "Player 1 wins": 
