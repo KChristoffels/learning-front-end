@@ -28,6 +28,7 @@
 </div>
 
 <button id="play">Play</button>
+<button id="reset"> Reset score</button>
 
 <div id="result"></div>
 
@@ -45,6 +46,8 @@
     play.addEventListener("click", playGame);
     let players = document.getElementById("players");
     players.addEventListener("change", changeGame);
+    let resetScore = document.getElementById("reset");
+    resetScore.addEventListener("click", resetGame);
     let p1choice = document.getElementById("p1choice");
     let p2choice = document.getElementById("p2choice");
     let choices = ["rock", "paper", "scissors", "spock", "lizard"];
@@ -73,6 +76,16 @@
             alert(`Computer chose ${p2value}`);         
         }
     }
+
+    function resetGame(event){
+        player1Score = 0;
+        player2Score = 0;
+        computerScore = 0;
+        document.getElementById("player1").innerHTML= 0;          
+        document.getElementById("player2").innerHTML= 0;                                                
+        document.getElementById("computer").innerHTML= 0;
+    }
+
     function changeGame(event){
         if (players.value === "1") {
             p2choice.disabled = true;
