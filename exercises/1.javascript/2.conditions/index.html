@@ -87,7 +87,7 @@
         }
         else {
             p2value = choices[Math.floor(Math.random()*choices.length)];
-            showWinner1player(p2value);
+            showWinner(p2value);
             document.getElementById("computerChoice").innerHTML= `Computer chose ${p2value}`;         
         }
     }
@@ -116,101 +116,72 @@
 
     function scoreKeeper(){
         
-
-        switch (document.getElementById("result").innerHTML){
-            case "Player 1 wins": 
-                        document.getElementById("player1").innerHTML= ++player1Score;
-                        break;
-            case "Player 2 wins":
-                        document.getElementById("player2").innerHTML= ++player2Score;
-                        break;
-            case "Computer wins":                        
-                        document.getElementById("computer").innerHTML= ++computerScore;
-            default:
-        }       
-        
+        if (p2choice.disabled === true) {
+                switch (document.getElementById("result").innerHTML){
+                case "Player 1 wins": 
+                            document.getElementById("player1").innerHTML= ++player1Score;
+                            break;
+                case "Player 2 wins":                        
+                            document.getElementById("computer").innerHTML= ++computerScore;
+                default:
+            }
+        }
+        else {
+                switch (document.getElementById("result").innerHTML){
+                case "Player 1 wins": 
+                            document.getElementById("player1").innerHTML= ++player1Score;
+                            break;
+                case "Player 2 wins":
+                            document.getElementById("player2").innerHTML= ++player2Score;
+                            break;
+                default:
+            }
+        } 
     }
     
 
-    function showWinner() {
+    function showWinner(p2value) {
 
         let p1value = p1choice.value;
-        let p2value = p2choice.value; 
+        let opponentResult; 
+
+        if (p2choice.disabled === false) {
+            opponentResult = p2choice.value;            
+        }
+        else {
+            opponentResult = p2value;
+        }
 
         switch (true) {
-            case p1value == p2value:                    
+            case p1value == opponentResult:                    
                     document.getElementById("result").innerHTML= "Draw";
                     break;
-            case ((p1value == "rock") && ((p2value == "paper") || (p2value == "spock"))):                    
+            case ((p1value == "rock") && ((opponentResult == "paper") || (opponentResult == "spock"))):                    
                     document.getElementById("result").innerHTML= "Player 2 wins";
                     break;
-            case ((p1value == "paper") && ((p2value == "rock") || (p2value == "spock"))):      
+            case ((p1value == "paper") && ((opponentResult == "rock") || (opponentResult == "spock"))):      
                     document.getElementById("result").innerHTML= "Player 1 wins";
                     break;
-            case ((p1value == "rock") && ((p2value == "scissors") || (p2value == "lizard"))):
+            case ((p1value == "rock") && ((opponentResult == "scissors") || (opponentResult == "lizard"))):
                     document.getElementById("result").innerHTML= "Player 1 wins";
                     break;
-            case ((p1value == "scissors") && ((p2value == "rock") || (p2value == "spock"))):                    
+            case ((p1value == "scissors") && ((opponentResult == "rock") || (opponentResult == "spock"))):                    
                     document.getElementById("result").innerHTML= "Player 2 wins";
                     break;
-            case ((p1value == "paper") && ((p2value == "scissors") || (p2value == "lizard"))):                    
+            case ((p1value == "paper") && ((opponentResult == "scissors") || (opponentResult == "lizard"))):                    
                     document.getElementById("result").innerHTML= "Player 2 wins";
                     break;
-            case ((p1value == "spock") && ((p2value == "lizard") || (p2value == "paper"))):                    
+            case ((p1value == "spock") && ((opponentResult == "lizard") || (opponentResult == "paper"))):                    
                     document.getElementById("result").innerHTML= "Player 2 wins";
                     break;
-            case ((p1value == "spock") && ((p2value == "rock") || (p2value == "scissors"))):                    
+            case ((p1value == "spock") && ((opponentResult == "rock") || (opponentResult == "scissors"))):                    
                     document.getElementById("result").innerHTML= "Player 1 wins";
                     break;
-            case ((p1value == "lizard") && ((p2value == "spock") || (p2value == "paper"))):                    
+            case ((p1value == "lizard") && ((opponentResult == "spock") || (opponentResult == "paper"))):                    
                     document.getElementById("result").innerHTML= "Player 1 wins";
                     break;
-            case ((p1value == "lizard") && ((p2value == "rock") || (p2value == "scissors"))):                    
+            case ((p1value == "lizard") && ((opponentResult == "rock") || (opponentResult == "scissors"))):                    
                     document.getElementById("result").innerHTML= "Player 2 wins";
-                    break;
-            default: 
-                    document.getElementById("result").innerHTML= "Player 1 wins";
-        } 
-
-        scoreKeeper();     
-        
-    }
-
-    function showWinner1player(p2value) {
-
-        let p1value = p1choice.value;
-        let computerResult = p2value; 
-
-        switch (true) {
-            case p1value == computerResult:                    
-                    document.getElementById("result").innerHTML= "Draw";
-                    break;
-            case ((p1value == "rock") && ((computerResult == "paper") || (computerResult == "spock"))):                    
-                    document.getElementById("result").innerHTML= "Computer wins";
-                    break;
-            case ((p1value == "paper") && ((computerResult == "rock") || (computerResult == "spock"))):      
-                    document.getElementById("result").innerHTML= "Player 1 wins";
-                    break;
-            case ((p1value == "rock") && ((computerResult == "scissors") || (computerResult == "lizard"))):
-                    document.getElementById("result").innerHTML= "Player 1 wins";
-                    break;
-            case ((p1value == "scissors") && ((computerResult == "rock") || (computerResult == "spock"))):                    
-                    document.getElementById("result").innerHTML= "Computer wins";
-                    break;
-            case ((p1value == "paper") && ((computerResult == "scissors") || (computerResult == "lizard"))):                    
-                    document.getElementById("result").innerHTML= "Computer wins";
-                    break;
-            case ((p1value == "spock") && ((computerResult == "lizard") || (computerResult == "paper"))):                    
-                    document.getElementById("result").innerHTML= "Computer wins";
-                    break;
-            case ((p1value == "spock") && ((computerResult == "rock") || (computerResult == "scissors"))):                    
-                    document.getElementById("result").innerHTML= "Player 1 wins";
-                    break;
-            case ((p1value == "lizard") && ((computerResult == "spock") || (computerResult == "paper"))):                    
-                    document.getElementById("result").innerHTML= "Player 1 wins";
-                    break;
-            case ((p1value == "lizard") && ((computerResult == "rock") || (computerResult == "scissors"))):                    
-                    document.getElementById("result").innerHTML= "Computer wins";
                     break;
             default: 
                     document.getElementById("result").innerHTML= "Player 1 wins";
