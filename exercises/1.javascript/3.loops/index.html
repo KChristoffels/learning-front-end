@@ -5,24 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playing Field</title>
 
-    <style>
-        .blue {
-            background-color: blue;
-        }
-        .red {
-            background-color: red;
-        }
-        .green {
-            background-color: green;
-        }        
-        .whiteSq {
-            background-color: white;
-            color: black;
-        }
-        .blackSq {
-            background-color: black;
-            color: white;
-        }
+    <style>    
 
         html, body{
             width: 100%;
@@ -42,6 +25,10 @@
             height: 400px;
             display: flex;
             flex-wrap: wrap;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
         }
         .cell {
             width: 40px;
@@ -67,9 +54,7 @@
 <div id="field"></div>
 
 
-<script>
-    let colors = ['#00FFFF', '#FF4500', '#0000CD', '#7CFC00'];
-    var random_color = colors[Math.floor(Math.random() * colors.length)]
+<script>    
     let field = document.getElementById("field");
     let standard = document.getElementById("generate");    
     standard.addEventListener("click", generateField);
@@ -81,11 +66,13 @@
     function generateField(event) { 
         let fieldCounter = 1;         
         for (i = 1; i <= 10; i++){
-            let divRow = document.createElement("div");
+            var divRow = document.createElement("div");
+            divRow.classList.add("row");
+
             for (j = 1; j <= 10; j++){
-                let divCell = document.createElement("div");
-                divCell.innerHTML = fieldCounter++;
-                divCell.id= i++;
+                var divCell = document.createElement("div");
+                divCell.id= fieldCounter;
+                divCell.innerHTML = fieldCounter++;                
                 divCell.classList.add("cell");
                 if (i % 2 == j % 2){
                     divCell.classList.add("bgblack");
@@ -95,9 +82,21 @@
             field.appendChild(divRow);
         }   
     }
+    function getRandomColor() {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
     function makeRandom(event) {
-        var allCells = document.getElementById("divRow").children;        
-        allCells[0].style.backgroundcolor = random_color;
+        
+        for (x = 1; x <= 100; x++){
+            document.getElementById(x).style.backgroundColor = getRandomColor();
+        }        
+        
     }
     function resetB(event) {
         field.innerHTML = "";
