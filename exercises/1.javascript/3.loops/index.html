@@ -20,19 +20,47 @@
         button {
             margin: 20px
         }
+        #fieldContainer {
+            height: 600px;
+            width: 600px;
+            display: grid;
+            grid-template-rows: auto auto auto;
+            grid-template-columns: auto auto auto;
+        }
         #field {
-            width: 400px;
-            height: 400px;
+            width: 500px;
+            height: 500px;
             display: flex;
             flex-wrap: wrap;
+            grid-column: 2/3;
+            grid-row: 2/3;            
+        }
+        #header {
+            grid-column: 2/3;
+            grid-row: 1/2;
+        }
+        #sider {
+            grid-column: 1/2;
+            grid-row: 2/3;
+        }
+        .indicatorTop {
+            width: 500px;
+            height: 50px;
+            display: flex;            
+        }
+        .indicatorSide {
+            height: 500px;
+            width: 50px;
+            display: flex;
+            flex-direction: column;            
         }
         .row {
             display: flex;
             flex-direction: row;
         }
         .cell {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -50,12 +78,19 @@
     <button id="random">Randomize!</button>
     <button id="reset">Reset</button>
 </div>
+<div id="fieldContainer">
+        <div id="header"></div>
+        <div id="field"></div>
+        <div id="sider"></div>
+</div>
 
-<div id="field"></div>
 
 
-<script>    
+<script>
+    let headerLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];    
     let field = document.getElementById("field");
+    let header = document.getElementById("header");
+    let sider = document.getElementById("sider");
     let standard = document.getElementById("generate");    
     standard.addEventListener("click", generateField);
     let random = document.getElementById("random");
@@ -64,15 +99,23 @@
     empty.addEventListener("click", resetB);
     
     function generateField(event) { 
-        let fieldCounter = 1;         
-        for (i = 1; i <= 10; i++){
+        
+        field.innerHTML = "";
+        header.innerHTML = "";
+        sider.innerHTML = "";
+        let fieldCounter = 1;
+
+        generateHeader();
+        generateSider();
+
+        for (i = 0; i < 10; i++){
             var divRow = document.createElement("div");
             divRow.classList.add("row");
 
-            for (j = 1; j <= 10; j++){
+            for (j = 0; j < 10; j++){
                 var divCell = document.createElement("div");
-                divCell.id= fieldCounter;
-                divCell.innerHTML = fieldCounter++;                
+                divCell.id= fieldCounter++;
+                divCell.innerHTML = (i+1) + " " + headerLetter[j];                
                 divCell.classList.add("cell");
                 if (i % 2 == j % 2){
                     divCell.classList.add("bgblack");
@@ -82,6 +125,33 @@
             field.appendChild(divRow);
         }   
     }
+
+    function generateHeader() {
+        let indicatorTop = document.createElement("div");
+        indicatorTop.classList.add("indicatorTop");
+        for (h = 0; h <= 9; h++) {
+            var divLetter = document.createElement("div");
+            divLetter.innerHTML = headerLetter[h];
+            divLetter.classList.add("cell");
+            indicatorTop.appendChild(divLetter);
+        }
+        header.appendChild(indicatorTop);
+    }
+
+    function generateSider() {
+        let indicatorSide = document.createElement("div");
+        indicatorSide.classList.add("indicatorSide");
+        for (g = 1; g <= 10; g++) {
+            let number = document.createElement("div");
+            number.innerHTML = g;
+            number.classList.add("cell");
+            sider.appendChild(number);
+        }
+        sider.appendChild(indicatorSide);
+    }
+
+    
+
     function getRandomColor() {
         let letters = '0123456789ABCDEF';
         let color = '#';
@@ -100,6 +170,8 @@
     }
     function resetB(event) {
         field.innerHTML = "";
+        header.innerHTML = "";
+        sider.innerHTML = "";
     }
 </script>
 
