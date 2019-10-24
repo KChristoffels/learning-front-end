@@ -117,7 +117,7 @@
 
         numberList.forEach(number => {
             number.addEventListener("click", function(){
-                disPlayer(number);
+                displayer(number);
             });           
         });
 
@@ -133,9 +133,9 @@
         }
         
 
-        function disPlayer (number) {
+        function displayer (number) {
             
-            if (screenContent.innerHTML == ('Make a calculation...' || 'EPIC FAIL NO OPERATOR ASSIGNED')) {
+            if ((screenContent.innerHTML == 'Make a calculation...') || (screenContent.innerHTML == 'EPIC FAIL NO OPERATOR ASSIGNED')) {
                 screenContent.innerHTML = number.innerHTML;                                      
             } else {
                 precedingContent = screenContent.innerHTML;                               
