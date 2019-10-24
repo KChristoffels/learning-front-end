@@ -173,16 +173,12 @@
         ==================================================================================================*/
         function DoThingsWithTheDom() {
 
-            
-            
-
             document.getElementById("id").innerHTML = "";
             document.getElementById("name").innerHTML = "";
             document.getElementById("image").src = "";
             document.getElementById("moveContainer").innerHTML = "Moves:";
             document.getElementById("ab").innerHTML = "";
             document.getElementById("weight").innerHTML = "";
-
             
             document.getElementById("id").innerHTML = "Id:" + " " + pokemon_id;
             document.getElementById("name").innerHTML = "Name:" + " " + pokemon_name;
@@ -200,20 +196,6 @@
 
             document.getElementById("ab").innerHTML = "Ability:" + " " + pokemon_abilities[Math.floor(Math.random() * abilitiesLength)];
             document.getElementById("weight").innerHTML = "Weight:" + " " + pokemon_weight;
-        
-            /*
-            Write your code here!
-            The following variables contain data for you to use. Be careful with the data types (some are numbers, some are strings and some are arrays)! 
-                pokemon_name
-                pokemon_id
-                pokemon_moves
-                pokemon_abilities
-                pokemon_image
-                pokemon_weight
-            The goal of the exercise is for you to display this information in your HTML.
-            You can do this by placing empty tags in your HTML, and the assigning their content with JS.
-            But you can also generate the HTML with document.createElement().
-            */
         }
         
     </script>
