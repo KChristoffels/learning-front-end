@@ -44,7 +44,17 @@
         picture.src = imageAdd;
         let btn = document.createElement("button");
         btn.innerHTML = "Click me";
-        btn.addEventListener ("click", showHide);               
+        btn.addEventListener ("click", showHide);
+
+        function showHide (event) {            
+            if (picture.style.visibility == "visible") {
+                picture.style.visibility = "hidden";
+            } else {
+                picture.style.visibility = "visible";
+            }           
+        }
+
+        showHide();               
 
         this.image = picture;
         this.name = name;
@@ -57,16 +67,8 @@
         this.button = btn;
         this.showHide = function () {
             showHide();
-        };
+        };        
 
-        function showHide (event) {            
-            if (picture.style.visibility == "visible") {
-                picture.style.visibility = "hidden";
-            } else {
-                picture.style.visibility = "visible";
-            }           
-        }
-        
         family.push(this);
     }
 
