@@ -147,12 +147,21 @@
             currentOperator = operator.innerHTML;            
             currentContent = screenContent.innerHTML;
             console.log(currentContent);
+            console.log(currentOperator);
             screenContent.innerHTML = "";          
         }
 
         function showResult(event) {
+            let modulusResult;
+            
+            if (currentOperator == "%") {
 
-            switch (currentOperator) {
+                modulusResult = (parseFloat(currentContent) % parseFloat(screenContent.innerHTML));
+                screenContent.innerHTML = modulusResult;
+
+            } else {
+
+                switch (currentOperator) {
                 case "+":
                     screenContent.innerHTML = (parseFloat(currentContent) + parseFloat(screenContent.innerHTML));
                     break;
@@ -164,12 +173,13 @@
                     break;
                 case "*":
                     screenContent.innerHTML =(parseFloat(currentContent) * parseFloat(screenContent.innerHTML));
-                    break;
-                case "%":
-                    screenContent.innerHTML =(parseFloat(currentContent) % parseFloat(screenContent.innerHTML));
+                    break;                
                 default:
                     screenContent.innerHTML = "EPIC FAIL NO OPERATOR ASSIGNED";
+                }
             }
+
+            
 
         }
 
