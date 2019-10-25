@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+    <style>
+        img {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <ul id="exercise1"></ul>
+
+    <ul id="exercise2">
+
+    </ul>
+
+    <div id="exercise3"></div>
+
+    <div id="exercise4"></div>
+
+<script>
+    // exercise 1
+
+    let aboutMe = {name:"Kris", age: 32, gender:"Man", favorite_food:"Pasta", favorite_series:"One Piece", favorite_movies: "Indiana Jones", status:"Single"};
+    let keys = Object.keys(aboutMe);
+    let properties = Object.values(aboutMe);
+
+    for (let i = 0; i < 7; i++) {
+        let li = document.createElement("li");
+        li.innerHTML = keys[i] + ": " + properties[i];
+        document.getElementById("exercise1").appendChild(li);
+    }
+
+    // exercise 2
+
+    let family = [];
+    
+    function FamilyMember (name, age, gender, favfood, favmov, favser, stat, imageAdd) {
+        let picture = document.createElement("img");
+        picture.src = imageAdd;
+        let btn = document.createElement("button");
+        btn.innerHTML = "Click me";
+        btn.addEventListener ("click", showHide);               
+
+        this.image = picture;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.favorite_food = favfood;
+        this.favorite_movies = favmov;
+        this.favorite_series = favser;
+        this.status = stat;
+        this.button = btn;
+        this.showHide = function () {
+            showHide();
+        };
+
+        function showHide (event) {            
+            if (picture.style.visibility == "visible") {
+                picture.style.visibility = "hidden";
+            } else {
+                picture.style.visibility = "visible";
+            }           
+        }
+        
+        family.push(this);
+    }
+
+    let daddo = new FamilyMember ("dad", 60, "attackhelicopter", "oil", "blackhawkdown", "blacklist", "flying", "superdads-back-festive-occasions-send-postcard-online-6242_88.jpg");
+    let mummo = new FamilyMember ("mummo", 55, "speedboat", "water", "titanic", "knightrider", "floating", "4781655_1.jpg");
+    let bruda = new FamilyMember ("knuckles", 2, "male", "ebola", "sonic", "sonic", "running", "1-1802303713.png");
+
+    for (let h = 0; h < 3; h++) {
+        let ul = document.createElement("ul");
+        let famKeys = Object.keys(family[h]);
+        let famProp = Object.values(family[h]);
+        ul.innerHTML = "Familymember " + (h+1);
+
+
+        ul.appendChild(famProp[0]);
+        
+            for (let j = 1; j < 8; j++) {
+            
+            let li = document.createElement("li");
+            li.innerHTML = famKeys[j] + ": " + famProp[j];
+            ul.appendChild(li);
+        }
+        ul.appendChild(famProp[8]);
+
+        document.getElementById("exercise2").appendChild(ul);
+    }
+
+    
+
+    // exercise 3
+
+
+
+</script>
+
+</body>
+
+</html>
