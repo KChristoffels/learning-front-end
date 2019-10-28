@@ -5,12 +5,14 @@ body {
     justify-content: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    font-size: 12px;
 }
 body > * {
     margin-top: 50px;
 }
 img {
     height: 300px;
-    width: 300px;
+    width: auto;
     border-radius: 25%;
+    display: block;
 }
