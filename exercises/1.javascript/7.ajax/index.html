@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+            <meta charset ="utf-8">
+            <link rel="stylesheet" type="text/css" href="style.css"
+        </head>
+
+        <body>
+            <div id="quote"></div>
+            <img id="image" src="">
+            <div id="author"></div>
+            <button id="button1">click me</button>
+            
+
+            <script>
+                
+                
+                
+                let but = document.getElementById("button1");
+                but.addEventListener("click", requester);
+
+                function requester (event) {
+                    let xhr = new XMLHttpRequest();                
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 0) {
+                            document.getElementById("quote").innerHTML = "Error, request failed"
+                            document.getElementById("image").src = "";
+                            document.getElementById("author").innerHTML = "";
+                        }
+                        else  {
+                            var response = JSON.parse(this.responseText);
+                            let values = Object.values(response);
+                            document.getElementById("quote").innerHTML = response.quote;
+                            document.getElementById("image").src = response.photo;
+                            document.getElementById("author").innerHTML = response.author;
+                        }
+                    };
+                    xhr.open("GET", "https://thatsthespir.it/api?t=", true);
+                    xhr.send();
+                    
+                }               
+
+                
+
+            </script>
+    
+        </body>
+
+    </html>
