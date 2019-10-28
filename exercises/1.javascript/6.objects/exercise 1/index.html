@@ -35,7 +35,7 @@
         document.getElementById("exercise1").appendChild(li);
     }
 
-    // exercise 2
+    // exercise 2 & 3
 
     let family = [];
     
@@ -72,17 +72,15 @@
         family.push(this);
     }
 
-    let daddo = new FamilyMember ("dad", 60, "attackhelicopter", "oil", "blackhawkdown", "blacklist", "flying", "superdads-back-festive-occasions-send-postcard-online-6242_88.jpg");
-    let mummo = new FamilyMember ("mummo", 55, "speedboat", "water", "titanic", "knightrider", "floating", "4781655_1.jpg");
-    let bruda = new FamilyMember ("knuckles", 2, "male", "ebola", "sonic", "sonic", "running", "1-1802303713.png");
+    let daddo = new FamilyMember ("dad", 60, "male", "spaghetti", "blackhawkdown", "blacklist", "married", "superdads-back-festive-occasions-send-postcard-online-6242_88.jpg");
+    let mummo = new FamilyMember ("mummo", 55, "female", "pizza", "titanic", "knightrider", "married", "4781655_1.jpg");
+    let bruda = new FamilyMember ("jack", 2, "male", "chicken", "sonic", "sonic", "single", "1-1802303713.png");
 
     for (let h = 0; h < 3; h++) {
         let ul = document.createElement("ul");
         let famKeys = Object.keys(family[h]);
         let famProp = Object.values(family[h]);
         ul.innerHTML = "Familymember " + (h+1);
-
-
         ul.appendChild(famProp[0]);
         
             for (let j = 1; j < 8; j++) {
@@ -98,7 +96,7 @@
 
     
 
-    // exercise 3
+    
 
 
 
