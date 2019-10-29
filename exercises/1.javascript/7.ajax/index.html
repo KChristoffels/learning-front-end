@@ -22,12 +22,13 @@
                 }
 
                 function requester (event) {
-                    const xhr = new XMLHttpRequest();
+                    let xhr = new XMLHttpRequest();
                     xhr.addEventListener("error", eventError);
                     
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {                            
                             var response = JSON.parse(this.responseText);
+                            console.dir(response);
                             let values = Object.values(response);
                             document.getElementById("quote").innerHTML = response.quote;
                             document.getElementById("image").src = response.photo;
