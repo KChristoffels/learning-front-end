@@ -7,6 +7,8 @@ function playerGenerator (name, race, type, health) {
     this.race = race;
     this.type = type;
     this.health = health; 
+
+    
     
     function skeletorActs (){
         moves = Math.round(Math.random());        
@@ -18,6 +20,7 @@ function playerGenerator (name, race, type, health) {
             } else {
                 damage = (Math.floor(Math.random() * 6) + 10);
             }
+            
 
             let playerHealth = you.health; 
             playerHealth = playerHealth - damage;
@@ -29,7 +32,7 @@ function playerGenerator (name, race, type, health) {
                 you.health = playerHealth;
                 console.log("Skeletor attacks you for " + damage + " damage. You have " + you.health + " hp left");
             }
-            
+
         } else {
             let amountHealed = (Math.floor(Math.random() * 41) + 40);
             let skeletorHealth = skeletor.health; 
@@ -54,11 +57,12 @@ function playerGenerator (name, race, type, health) {
             skeletorHealth = skeletorHealth - damage;
             if (skeletorHealth <= 0) {
                 alert("Congratulations! You've sent skeletor back to the raveyard");
-
+                you.health = 100;
+                skeletor.health = 1000;
             } else {
                 skeletor.health = skeletorHealth;
                 console.log("You attack Skeletor for " + damage + " damage . Skeletor has " + skeletor.health + " hp left");
-
+                randomPun(puns);
                 setInterval(skeletorActs(), 2000);
             }
         }
@@ -69,7 +73,7 @@ function playerGenerator (name, race, type, health) {
             playerHealth > 100 ? playerHealth = 100 : "";
             you.health = playerHealth;
             console.log("You heal yourself for" + amountHealed + ". You now have " + you.health + "hp left" );
-
+            randomPun(puns);
             setInterval(skeletorActs(), 2000);
         };
 
@@ -87,6 +91,8 @@ let you = new playerGenerator("you", "human", "inquisitor", 100);
 
 
 console.log(you.attack());
-console.log(skeletor.performMove());
+
+
+
 
 
