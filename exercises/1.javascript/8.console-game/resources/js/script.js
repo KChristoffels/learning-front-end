@@ -8,8 +8,6 @@ function playerGenerator (name, race, type, health) {
     this.type = type;
     this.health = health; 
 
-    
-    
     function skeletorActs (){
         moves = Math.round(Math.random());        
         if(this.moves == 0) {
@@ -20,7 +18,6 @@ function playerGenerator (name, race, type, health) {
             } else {
                 damage = (Math.floor(Math.random() * 6) + 10);
             }
-            
 
             let playerHealth = you.health; 
             playerHealth = playerHealth - damage;
