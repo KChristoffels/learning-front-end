@@ -25,13 +25,18 @@ function createUser (event) {
 
     let nodeInputFields = document.querySelectorAll("input");
     let arrayInputFields = Array.from(nodeInputFields);
-    let requiredFields = arrayInputFields.slice(0,9);    
+    let requiredFields = arrayInputFields.slice(0,9);
 
-    function checkEmptyFields() {
+    console.dir(requiredFields);
+
+    
+
+    function checkEmptyFields() {        
+        
     
         for(let i = 0;i < requiredFields.length; i++){
             if(requiredFields[i].value == ""){
-                
+                console.log(requiredFields[i]);
                 requiredFields[i].style.borderColor = '#FF0000'; 
                 
             } else {
@@ -40,13 +45,9 @@ function createUser (event) {
                  
             }
          }
-
-        
-
-              
     
         if (requiredFields.some(function(item){
-            return item.style.borderColor = '#FF0000';
+            return item.style.borderColor == '#FF0000';
         }) == true) {
             errorMessage += "- You have yet to fill out some required fields.\n";            
         }
@@ -66,7 +67,7 @@ function createUser (event) {
     }
 
     function validatePassword() {
-        let testPw = /^(?=.*[0-9])(?=.*[A-Z])[0-9a-zA-Z]$/;
+        let testPw = /^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
         let passW = document.getElementById("password").value;
         
         let passWField = document.getElementById("password");
@@ -85,23 +86,14 @@ function createUser (event) {
 
     checkEmptyFields()
     validatePassword()
-    validateEmail()
+    validateEmail()    
 
-    console.log(requiredFields[0].style.borderColor);
-    console.log(requiredFields[0].value);
-
-    if (requiredFields[0].value !== ""){
-        requiredFields[0].style.borderColor = "";
-    } 
-    
-    console.log(requiredFields[0].style.borderColor);
 
     if (requiredFields.some(function(item){
-        return item.style.borderColor = '#FF0000';
+        return item.style.borderColor == '#FF0000';
     }) == true) {
 
-        console.log(errorMessage);
-        
+        console.log(errorMessage);        
 
     } else {
        
@@ -126,7 +118,7 @@ function createUser (event) {
         }
     }
 
-    location.reload();
+    //location.reload();
      
     }    
 }

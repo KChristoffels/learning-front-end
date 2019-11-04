@@ -34,8 +34,7 @@ function createUser (event) {
 
 
     function checkEmptyFields() {
-
-        console.log('working');
+    
         for(let i = 0;i < requiredFields.length; i++){
                 if(requiredFields[i].value == ""){
                     requiredFields[i].style.borderColor = '#FF0000'; 
@@ -49,8 +48,8 @@ function createUser (event) {
             return item.style.borderColor == '#FF0000';
         })) {
             errorMessage += "- You have yet to fill out some required fields.\n";
-        } 
+        }  
     } 
 
-    checkEmptyFields()
+    checkEmptyFields();
 }
