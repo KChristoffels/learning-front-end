@@ -103,7 +103,50 @@
             </table>
         </div>
         <script>
-            // Write your code here
+            let tableCon = document.getElementById("pizzaOrders");
+            let tableBody = document.querySelectorAll("#emptyRow > td > input");            
+            let tableArray = Array.from(tableBody);
+            let requiredFields = tableArray.slice(0,3);
+                        
+
+            function checkInput (item){
+
+            return item.value == '';
+            }
+
+            for (let i = 0; i < 4; i++) {
+                tableArray[i].addEventListener("keyup", enterEv)
+            }
+
+            function enterEv (event) {
+                if (event.keyCode === 13) {
+
+                    if (requiredFields.some(checkInput) == true) {
+
+                        console.log("You have yet to fill out some required fields");
+
+                    } else {
+
+                       let row = tableCon.insertRow(2);
+                       let cell1 = row.insertCell(0);
+                       let cell2 = row.insertCell(1);
+                       let cell3 = row.insertCell(2);
+                       let cell4 = row.insertCell(3);                       
+
+                       cell1.innerHTML = tableArray[0].value;
+                       cell2.innerHTML = tableArray[1].value;
+                       cell3.innerHTML = tableArray[2].value;
+                       cell4.innerHTML = tableArray[3].value;
+
+                        for (j = 0; j < 4; j++) {
+                            tableArray[j].value = "";
+                        }
+                    }
+
+                }
+            }
+
+
         </script>
     </div>
     <!-- END OF Part 2 -->
@@ -132,7 +175,28 @@
 
         </div>
         <script>
-            // Write your code here
+            
+            let makeList = document.querySelectorAll("#listHolder > span");
+            let listArray = Array.from(makeList);
+            let launcher = document.getElementById("launchMe");
+            launcher.addEventListener("click", launchList);
+
+            function launchList (event) {
+                for (let i = 0; i < 3; i++) {
+                    let newUl = document.createElement("ul");
+                    let listContent = listArray[i].innerHTML;
+                    newUl.innerHTML = listContent;
+                    listArray[i].replaceWith(newUl);
+                }
+                let lastUl = document.createElement("ul");                
+                let label = document.createElement("label");
+                label.innerHTML = listArray[3].innerHTML;
+                let inputWindow = document.createElement("input");
+                lastUl.appendChild(label);
+                lastUl.appendChild(inputWindow);
+                listArray[3].replaceWith(lastUl);
+            }
+
         </script>
     </div>
     <!-- END OF Part 3 -->
