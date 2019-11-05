@@ -1,4 +1,4 @@
-//document.getElementById("submit").addEventListener("click", createUser);
+document.getElementById("submit").addEventListener("click", createUser);
 //document.getElementById("email").addEventListener("focusout", validateEmail);
 //document.getElementById("password").addEventListener("focusout", validatePassword);
 
@@ -21,35 +21,39 @@ function createUser (event) {
 
     let errorMessage = "You have filled out some fields incorrectly:\n";    
     var user = new SubmittedInfo();
-
     
 
     let nodeInputFields = document.querySelectorAll("input");
    
     let arrayInputFields = Array.from(nodeInputFields);
-    let requiredFields = arrayInputFields.slice(0,9);
 
-    
+    console.dir (arrayInputFields);
 
+    function checkInput (item){
 
+        return item.style.borderColor == '#FF0000';
+    }
 
     function checkEmptyFields() {
     
-        for(let i = 0;i < requiredFields.length; i++){
-                if(requiredFields[i].value == ""){
-                    requiredFields[i].style.borderColor = '#FF0000'; 
-                    errorMessage += "- You have yet to fill out some required fields.\n";
+        for(let i = 0;i < 9; i++){
+                if(arrayInputFields[i].value == ""){
+                    arrayInputFields[i].style.borderColor = '#FF0000';
+                    console.dir(arrayInputFields[i]);
+                    console.log(arrayInputFields[i].style.borderColor);                     
                 }else{
-                    requiredFields[i].style.borderColor = ''; 
+                    arrayInputFields[i].style.borderColor = ''; 
                 }
         }
 
-        if (requiredFields.some(function(item){
-            return item.style.borderColor == '#FF0000';
-        })) {
+        if (arrayInputFields.some(checkInput) == true) {
             errorMessage += "- You have yet to fill out some required fields.\n";
+            console.log(errorMessage);
         }  
     } 
+
+    
+
 
     checkEmptyFields();
 }

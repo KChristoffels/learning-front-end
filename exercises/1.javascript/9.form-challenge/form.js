@@ -25,34 +25,30 @@ function createUser (event) {
 
     let nodeInputFields = document.querySelectorAll("input");
     let arrayInputFields = Array.from(nodeInputFields);
-    let requiredFields = arrayInputFields.slice(0,9);
 
-    console.dir(requiredFields);
+    function checkInput (item){
 
-    
+        return item.style.borderColor == '#FF0000';
+    }
 
-    function checkEmptyFields() {        
+    function checkEmptyFields () {        
         
     
-        for(let i = 0;i < requiredFields.length; i++){
-            if(requiredFields[i].value == ""){
-                console.log(requiredFields[i]);
-                requiredFields[i].style.borderColor = '#FF0000'; 
-                
-            } else {
-
-                requiredFields[i].style.borderColor = '';
-                 
+        for(let i = 0;i < 9; i++){
+            if(arrayInputFields[i].value == ""){
+                arrayInputFields[i].style.borderColor = '#FF0000';
+                console.dir(arrayInputFields[i]);                     
+            }else{
+                arrayInputFields[i].style.borderColor = ''; 
             }
-         }
-    
-        if (requiredFields.some(function(item){
-            return item.style.borderColor == '#FF0000';
-        }) == true) {
-            errorMessage += "- You have yet to fill out some required fields.\n";            
         }
-    
+
+        if (arrayInputFields.some(checkInput) == true) {
+            errorMessage += "- You have yet to fill out some required fields.\n";            
+        } 
     }
+
+    checkEmptyFields();
 
     function validateEmail() {
 
@@ -67,6 +63,7 @@ function createUser (event) {
     }
 
     function validatePassword() {
+
         let testPw = /^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
         let passW = document.getElementById("password").value;
         
@@ -77,21 +74,17 @@ function createUser (event) {
             errorMessage += "- Password must contain at least one number and one uppercase.\n";            
             passWField.style.borderColor = '#FF0000';           
         } 
-        if (passW != confPw) {
+        if (passW !== confPw) {
             errorMessage += "- Your password does not match the second password entry.\n";            
             passWField.style.borderColor = '#FF0000';
-        } 
-        
+        }        
     }
-
-    checkEmptyFields()
+    
     validatePassword()
     validateEmail()    
 
 
-    if (requiredFields.some(function(item){
-        return item.style.borderColor == '#FF0000';
-    }) == true) {
+    if (arrayInputFields.some(checkInput) == true) {
 
         console.log(errorMessage);        
 
@@ -110,13 +103,7 @@ function createUser (event) {
     document.getElementById("zip").value = "";
     document.getElementById("phone").value = "";
     document.getElementById("age").value = "";
-    document.getElementById("hobbies").value = ""; 
-
-    for(let i = 0;i < requiredFields.length; i++){
-        if(requiredFields[i].style.borderColor == '#FF0000'){
-            requiredFields[i].style.borderColor = '';            
-        }
-    }
+    document.getElementById("hobbies").value = "";
 
     //location.reload();
      
