@@ -398,7 +398,25 @@
             <div id="moveAnimation" class="block"></div>
         </div>
         <script>
-            // Write your code here
+            
+            function moveIt () {
+
+                let moveAnim = document.getElementById("moveAnimation");                
+                let pos = 0;
+                let frames = 9             
+                let id = setInterval(frame, 1000/60);                
+                
+                function frame () {
+                    pos += frames;
+                    if (pos > 1092) {
+                        frames = -4;                        
+                    } else if (pos < 0) {
+                        frames = 9;
+                    }
+                    moveAnim.style.left = pos + 'px';
+                }
+            }
+            moveIt()
         </script>
     </div>
     <!-- END OF Part 5 -->
@@ -414,7 +432,21 @@
             <div id="followMouse" class="block"></div>
         </div>
         <script>
-            // Write your code here
+            let mousy = document.getElementById("followMouse");
+            window.addEventListener('mousemove', moveM);
+            function moveM (event) {
+                x = event.clientX;
+                let currentPosition = mousy.style.left;
+                var curPos = currentPosition.replace(/px/, '');
+                if (typeof x !== 'undefined') {
+                    if (curPos > 1086) {                                               
+                        mousy.style.left = 1086 + 'px';                       
+
+                    } else {
+                        mousy.style.left = x + 'px';
+                    }
+                }
+            }
         </script>
     </div>
     <!-- END OF Part 6 -->
