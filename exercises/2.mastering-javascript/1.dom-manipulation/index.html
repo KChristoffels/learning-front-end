@@ -436,17 +436,15 @@
             window.addEventListener('mousemove', moveM);
             function moveM (event) {
                 x = event.clientX;
-                let currentPosition = mousy.style.left;
-                var curPos = currentPosition.replace(/px/, '');
-                if (typeof x !== 'undefined') {
-                    if (curPos > 1086) {                                               
-                        mousy.style.left = 1086 + 'px';                       
+                
+                if (x > 1092) {
 
-                    } else {
+                }  else {
                         mousy.style.left = x + 'px';
-                    }
                 }
+            
             }
+            
         </script>
     </div>
     <!-- END OF Part 6 -->
@@ -456,14 +454,104 @@
         <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
             <h3>Part 7: Sliders</h3>
             <p>Recreate this very intuitive user interface. Insert the DOM nodes (html elements) using document.createElement();</p>
-            <img src="./input.gif" alt="Interface" />
+            <img src="input.gif" alt="Interface" />
             <hr/>
             <br/>
 
             <div id="target"></div>
         </div>
         <script>
-            // Write your code here
+            function generateName () {
+
+            let target = document.getElementById("target");
+            let label = document.createElement("label");
+            let letterCounter = 1;
+            let barCounter = 0;
+            label.innerHTML = "Enter your first name:";
+
+            target.appendChild(label);
+
+            let input = document.createElement("p");
+            input.innerHTML = "A";            
+            
+            input.addEventListener("mouseover", createInterface);
+             
+            console.log(input);           
+
+            function createInterface (event) {
+
+            let container = document.createElement("div");            
+            let letterLabel = document.createElement("label");
+            letterLabel.id = "letterLabel" + letterCounter;
+            console.log(letterLabel.id);
+
+            let inputSlider = document.createElement("input");
+            inputSlider.id = "inputslider" + letterCounter;
+            inputSlider.type = "range";
+            inputSlider.min = 65;
+            inputSlider.max = 90;
+            inputSlider.addEventListener("change", showLetter);
+
+            function showLetter (event) {
+                letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
+                input.innerHTML = String.fromCharCode(inputSlider.value);
+            }
+
+            container.appendChild(letterLabel);
+            container.appendChild(inputSlider);
+
+            target.appendChild(container);
+
+            letterCounter++;
+
+            let button = document.createElement("button");
+            button.innerHTML = "Add letter";
+            button.addEventListener("click", newBar);
+
+            function newBar(event){
+
+                let container = document.createElement("div");            
+                let letterLabel = document.createElement("label");
+                letterLabel.id = "letterLabel" + letterCounter;                
+
+                let inputSlider = document.createElement("input");
+                inputSlider.id = "inputslider" + letterCounter;
+                inputSlider.type = "range";
+                inputSlider.min = 65;
+                inputSlider.max = 90;
+                inputSlider.addEventListener("change", showLetter2);
+
+                function showLetter2 (event) {
+                    letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
+                    if (input.length == barCounter) {
+                        input.innerHTML = input.innerHTML + String.fromCharCode(inputSlider.value);
+                        console.log(barCounter);
+                        barCounter++;
+                        console.log(barCounter);
+                    } else {
+                        input.innerHTML = input.innerHTML.substr(0,barCounter) + String.fromCharCode(inputSlider.value);
+                    }                    
+                }
+
+                container.appendChild(letterLabel);
+                container.appendChild(inputSlider);
+
+                let targetLength = target.childNodes.length;
+
+                target.insertBefore(container, target.childNodes[targetLength-1]);
+
+                letterCounter++;
+                
+
+            }
+            target.appendChild(button); 
+
+            input.removeEventListener("mouseover", createInterface);
+            }
+
+            target.appendChild(input);
+            }
+            generateName();
         </script>
     </div>
     <!-- END OF Part 7 -->
@@ -479,7 +567,101 @@
             <div id="target2"></div>
         </div>
         <script>
-            // You can put at most one line here
+            function generateName2 () {
+
+                let target = document.getElementById("target2");
+                let label = document.createElement("label");
+                let letterCounter = 1;
+                let barCounter = -1;
+                label.innerHTML = "Enter your first name:";
+
+                target.appendChild(label);
+
+                let input = document.createElement("p");
+                input.innerHTML = "A";            
+
+                input.addEventListener("mouseover", createInterface);
+                
+                console.log(input);           
+
+                function createInterface (event) {
+
+                let container = document.createElement("div");            
+                let letterLabel = document.createElement("label");
+                letterLabel.id = "letterLabel" + letterCounter;
+                console.log(letterLabel.id);
+
+                let inputSlider = document.createElement("input");
+                inputSlider.id = "inputslider" + letterCounter;
+                inputSlider.type = "range";
+                inputSlider.min = 65;
+                inputSlider.max = 90;
+                inputSlider.addEventListener("change", showLetter);
+
+                function showLetter (event) {
+                    letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
+                    input.innerHTML = String.fromCharCode(inputSlider.value);
+                }
+
+                container.appendChild(letterLabel);
+                container.appendChild(inputSlider);
+
+                target.appendChild(container);
+
+                letterCounter++;
+
+                let button = document.createElement("button");
+                button.innerHTML = "Add letter";
+                button.addEventListener("click", newBar);
+
+                function newBar(event){
+                    barCounter++;
+                    let container = document.createElement("div");            
+                    let letterLabel = document.createElement("label");
+                    letterLabel.id = "letterLabel" + letterCounter;                
+
+                    let inputSlider = document.createElement("input");
+                    inputSlider.id = "inputslider" + letterCounter;
+                    inputSlider.type = "range";
+                    inputSlider.min = 65;
+                    inputSlider.max = 90;
+                    inputSlider.addEventListener("change", showLetter2);
+
+                    function showLetter2 (event) {
+                        letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
+                        console.log(barCounter);
+                        console.log(input.innerHTML.length);
+                        if (input.innerHTML.length > barCounter) {
+                            
+                            input.innerHTML = input.innerHTML.substr(0,barCounter) + String.fromCharCode(inputSlider.value) + input.innerHTML.substr(barCounter, barCounter+1);
+                            console.log(barCounter); 
+
+                        } else {                            
+
+                            input.innerHTML = input.innerHTML + String.fromCharCode(inputSlider.value);
+                            
+                        }                    
+                    }
+
+                    container.appendChild(letterLabel);
+                    container.appendChild(inputSlider);
+
+                    let targetLength = target.childNodes.length;
+
+                    target.insertBefore(container, target.childNodes[targetLength-1]);
+
+                    letterCounter++;
+                    
+
+                }
+                target.appendChild(button); 
+
+                input.removeEventListener("mouseover", createInterface);
+                }
+
+                target.appendChild(input);
+                }
+                generateName2();
         </script>
     </div>
     <!-- END OF Part 8 -->
