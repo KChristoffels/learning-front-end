@@ -461,97 +461,100 @@
             <div id="target"></div>
         </div>
         <script>
-            function generateName () {
+            function generateName() {
 
-            let target = document.getElementById("target");
-            let label = document.createElement("label");
-            let letterCounter = 1;
-            let barCounter = 0;
-            label.innerHTML = "Enter your first name:";
+                let target = document.getElementById("target");
+                let label = document.createElement("label");                
+                let barCounter = 1;
+                label.innerHTML = "Enter your first name:";
 
-            target.appendChild(label);
+                target.appendChild(label);
 
-            let input = document.createElement("p");
-            input.innerHTML = "A";            
-            
-            input.addEventListener("mouseover", createInterface);
-             
-            console.log(input);           
+                let input = document.createElement("p");
+                input.innerHTML = "A";            
 
-            function createInterface (event) {
+                input.addEventListener("mouseover", createInterface);         
 
-            let container = document.createElement("div");            
-            let letterLabel = document.createElement("label");
-            letterLabel.id = "letterLabel" + letterCounter;
-            console.log(letterLabel.id);
-
-            let inputSlider = document.createElement("input");
-            inputSlider.id = "inputslider" + letterCounter;
-            inputSlider.type = "range";
-            inputSlider.min = 65;
-            inputSlider.max = 90;
-            inputSlider.addEventListener("change", showLetter);
-
-            function showLetter (event) {
-                letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
-                input.innerHTML = String.fromCharCode(inputSlider.value);
-            }
-
-            container.appendChild(letterLabel);
-            container.appendChild(inputSlider);
-
-            target.appendChild(container);
-
-            letterCounter++;
-
-            let button = document.createElement("button");
-            button.innerHTML = "Add letter";
-            button.addEventListener("click", newBar);
-
-            function newBar(event){
+                function createInterface (event) {
 
                 let container = document.createElement("div");            
                 let letterLabel = document.createElement("label");
-                letterLabel.id = "letterLabel" + letterCounter;                
+                letterLabel.id = "letterLabel" + barCounter;
 
                 let inputSlider = document.createElement("input");
-                inputSlider.id = "inputslider" + letterCounter;
+                inputSlider.id = "inputslider" + barCounter;
                 inputSlider.type = "range";
                 inputSlider.min = 65;
                 inputSlider.max = 90;
-                inputSlider.addEventListener("change", showLetter2);
+                inputSlider.addEventListener("change", showLetter);
 
-                function showLetter2 (event) {
-                    letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
-                    if (input.length == barCounter) {
-                        input.innerHTML = input.innerHTML + String.fromCharCode(inputSlider.value);
-                        console.log(barCounter);
-                        barCounter++;
-                        console.log(barCounter);
+                function showLetter (event) {
+                    if (input.innerHTML.length > 1) {
+                        let letters = input.innerHTML.split("");
+                        letters[0] = String.fromCharCode(inputSlider.value);
+                        let newString = letters.join("");
+                        input.innerHTML = newString;
                     } else {
-                        input.innerHTML = input.innerHTML.substr(0,barCounter) + String.fromCharCode(inputSlider.value);
-                    }                    
+                        letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
+                        input.innerHTML = String.fromCharCode(inputSlider.value);
+                    }
                 }
 
                 container.appendChild(letterLabel);
                 container.appendChild(inputSlider);
 
-                let targetLength = target.childNodes.length;
+                target.appendChild(container);
 
-                target.insertBefore(container, target.childNodes[targetLength-1]);
+                let button = document.createElement("button");
+                button.innerHTML = "Add letter";
+                button.addEventListener("click", newBar);
 
-                letterCounter++;
-                
+                function newBar(event){
+                    barCounter++;
+                    let container = document.createElement("div");            
+                    let letterLabel = document.createElement("label");
+                    letterLabel.id = "letterLabel" + barCounter;                
 
-            }
-            target.appendChild(button); 
+                    let inputSlider = document.createElement("input");
+                    inputSlider.id = "inputslider" + barCounter;
+                    let id = inputSlider.id;                    
+                    let seperateId = id.substring(id.length-1);                    
+                    inputSlider.type = "range";
+                    inputSlider.min = 65;
+                    inputSlider.max = 90;
+                    
+                    inputSlider.addEventListener("change", showLetter);
 
-            input.removeEventListener("mouseover", createInterface);
-            }
+                    function showLetter (event) {
+                        letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
+                        
+                        if (input.innerHTML.length >= seperateId) {
+                            
+                            input.innerHTML = input.innerHTML.substr(0,seperateId-1) + String.fromCharCode(inputSlider.value) + input.innerHTML.substr(seperateId, input.innerHTML.length);
 
-            target.appendChild(input);
-            }
-            generateName();
+                        } else {                            
+
+                            input.innerHTML = input.innerHTML + String.fromCharCode(inputSlider.value);                            
+                            
+                        }                    
+                    }
+
+                    container.appendChild(letterLabel);
+                    container.appendChild(inputSlider);
+
+                    let targetLength = target.childNodes.length;
+
+                    target.insertBefore(container, target.childNodes[targetLength-1]);
+
+                }
+                target.appendChild(button); 
+
+                input.removeEventListener("mouseover", createInterface);
+                }
+
+                target.appendChild(input);
+                }
+                generateName();
         </script>
     </div>
     <!-- END OF Part 7 -->
@@ -570,9 +573,8 @@
             function generateName2 () {
 
                 let target = document.getElementById("target2");
-                let label = document.createElement("label");
-                let letterCounter = 1;
-                let barCounter = -1;
+                let label = document.createElement("label");                
+                let barCounter = 1;
                 label.innerHTML = "Enter your first name:";
 
                 target.appendChild(label);
@@ -580,35 +582,38 @@
                 let input = document.createElement("p");
                 input.innerHTML = "A";            
 
-                input.addEventListener("mouseover", createInterface);
-                
-                console.log(input);           
+                input.addEventListener("mouseover", createInterface);    
 
                 function createInterface (event) {
 
                 let container = document.createElement("div");            
                 let letterLabel = document.createElement("label");
-                letterLabel.id = "letterLabel" + letterCounter;
-                console.log(letterLabel.id);
+                letterLabel.id = "letterLabel" + barCounter;
 
                 let inputSlider = document.createElement("input");
-                inputSlider.id = "inputslider" + letterCounter;
+                inputSlider.id = "inputslider" + barCounter;
                 inputSlider.type = "range";
                 inputSlider.min = 65;
                 inputSlider.max = 90;
                 inputSlider.addEventListener("change", showLetter);
 
                 function showLetter (event) {
-                    letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
-                    input.innerHTML = String.fromCharCode(inputSlider.value);
+                    if (input.innerHTML.length > 1) {
+                        let letters = input.innerHTML.split("");
+                        letters[0] = String.fromCharCode(inputSlider.value);
+                        let newString = letters.join("");
+                        input.innerHTML = newString;
+                    } else {
+                        letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
+                        input.innerHTML = String.fromCharCode(inputSlider.value);
+                    }
+                    
                 }
 
                 container.appendChild(letterLabel);
                 container.appendChild(inputSlider);
 
                 target.appendChild(container);
-
-                letterCounter++;
 
                 let button = document.createElement("button");
                 button.innerHTML = "Add letter";
@@ -618,27 +623,28 @@
                     barCounter++;
                     let container = document.createElement("div");            
                     let letterLabel = document.createElement("label");
-                    letterLabel.id = "letterLabel" + letterCounter;                
+                    letterLabel.id = "letterLabel" + barCounter;                
 
                     let inputSlider = document.createElement("input");
-                    inputSlider.id = "inputslider" + letterCounter;
+                    inputSlider.id = "inputslider" + barCounter;
+                    let id = inputSlider.id;                    
+                    let seperateId = id.substring(id.length-1);
                     inputSlider.type = "range";
                     inputSlider.min = 65;
                     inputSlider.max = 90;
+                    
                     inputSlider.addEventListener("change", showLetter2);
 
                     function showLetter2 (event) {
                         letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
-                        console.log(barCounter);
-                        console.log(input.innerHTML.length);
-                        if (input.innerHTML.length > barCounter) {
+                        
+                        if (input.innerHTML.length >= seperateId) {
                             
-                            input.innerHTML = input.innerHTML.substr(0,barCounter) + String.fromCharCode(inputSlider.value) + input.innerHTML.substr(barCounter, barCounter+1);
-                            console.log(barCounter); 
+                            input.innerHTML = input.innerHTML.substr(0,seperateId-1) + String.fromCharCode(inputSlider.value) + input.innerHTML.substr(seperateId, input.innerHTML.length);
 
                         } else {                            
 
-                            input.innerHTML = input.innerHTML + String.fromCharCode(inputSlider.value);
+                            input.innerHTML = input.innerHTML + String.fromCharCode(inputSlider.value);                            
                             
                         }                    
                     }
@@ -649,9 +655,6 @@
                     let targetLength = target.childNodes.length;
 
                     target.insertBefore(container, target.childNodes[targetLength-1]);
-
-                    letterCounter++;
-                    
 
                 }
                 target.appendChild(button); 
