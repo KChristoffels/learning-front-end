@@ -382,7 +382,65 @@
             </table>
         </div>
         <script>
-            // Write your code here
+            let table = document.getElementById("searchTable");
+            let tr = table.getElementsByTagName("tr");
+            let th = table.getElementsByTagName("th");
+            let header = Array.from(th);
+            let counter = 0;
+            
+            header.forEach(header => {
+                let checkBox = document.createElement("input");
+                checkBox.type="checkbox";
+                checkBox.id = "checkbox" + counter; 
+                checkBox.checked = true;             
+                
+                let stringId = checkBox.id;                
+                let id = stringId.substring(stringId.length-1);
+                console.log(id);
+
+                checkBox.addEventListener("change", hideColum);
+
+                function hideColum(event) {
+
+                if(this.checked){
+                    for (let j = 1; j < tr.length; j++) {
+                        let cellsToHide = tr[j].getElementsByTagName("td")[id];
+                        cellsToHide.style.visibility = "";
+                    }
+                } else {
+                    for (let j = 1; j < tr.length; j++) {
+                        let cellsToHide = tr[j].getElementsByTagName("td")[id];
+                        cellsToHide.style.visibility = "hidden";
+                    }
+                }
+                
+                }   
+
+                header.appendChild(checkBox);
+                counter++;
+            });
+
+            
+            
+            let input = document.getElementById("searchInput");
+            let txtValue;
+            input.addEventListener("keyup", searchData);
+
+
+            function searchData(event) {
+                let filter = input.value.toUpperCase();
+                for (let i = 1; i < tr.length; i++) {
+                    let td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1){
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
         </script>
     </div>
     <!-- END OF Part 4 -->
@@ -463,7 +521,12 @@
         <script>
             function generateName() {
 
-                let target = document.getElementById("target");
+                let base = document.getElementsByClassName("col-12 bg-white shadow-sm p-4 mx-auto mt-4");
+                
+                let baseArray = Array.from(base);                
+                let target = baseArray[baseArray.length-1].lastChild.previousSibling;
+                console.dir(baseArray[baseArray.length-1].childNodes)                
+
                 let label = document.createElement("label");                
                 let barCounter = 1;
                 label.innerHTML = "Enter your first name:";
@@ -570,9 +633,14 @@
             <div id="target2"></div>
         </div>
         <script>
-            function generateName2 () {
+            function generateName() {
 
-                let target = document.getElementById("target2");
+                let base = document.getElementsByClassName("col-12 bg-white shadow-sm p-4 mx-auto mt-4");
+
+                let baseArray = Array.from(base);                
+                let target = baseArray[baseArray.length-1].lastChild.previousSibling;
+                console.dir(baseArray[baseArray.length-1].childNodes)                
+
                 let label = document.createElement("label");                
                 let barCounter = 1;
                 label.innerHTML = "Enter your first name:";
@@ -582,7 +650,7 @@
                 let input = document.createElement("p");
                 input.innerHTML = "A";            
 
-                input.addEventListener("mouseover", createInterface);    
+                input.addEventListener("mouseover", createInterface);         
 
                 function createInterface (event) {
 
@@ -607,7 +675,6 @@
                         letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
                         input.innerHTML = String.fromCharCode(inputSlider.value);
                     }
-                    
                 }
 
                 container.appendChild(letterLabel);
@@ -628,14 +695,14 @@
                     let inputSlider = document.createElement("input");
                     inputSlider.id = "inputslider" + barCounter;
                     let id = inputSlider.id;                    
-                    let seperateId = id.substring(id.length-1);
+                    let seperateId = id.substring(id.length-1);                    
                     inputSlider.type = "range";
                     inputSlider.min = 65;
                     inputSlider.max = 90;
                     
-                    inputSlider.addEventListener("change", showLetter2);
+                    inputSlider.addEventListener("change", showLetter);
 
-                    function showLetter2 (event) {
+                    function showLetter (event) {
                         letterLabel.innerHTML = String.fromCharCode(inputSlider.value);
                         
                         if (input.innerHTML.length >= seperateId) {
@@ -663,8 +730,8 @@
                 }
 
                 target.appendChild(input);
-                }
-                generateName2();
+            }
+            generateName();
         </script>
     </div>
     <!-- END OF Part 8 -->
