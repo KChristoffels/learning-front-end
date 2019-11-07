@@ -382,54 +382,69 @@
             </table>
         </div>
         <script>
-            let table = document.getElementById("searchTable");
-            let tr = table.getElementsByTagName("tr");
-            let th = table.getElementsByTagName("th");
-            let header = Array.from(th);
-            let counter = 0;
             
-            header.forEach(header => {
+            let table = document.getElementById("searchTable");            
+            let newRow = document.createElement("tr");
+            let counter = 0;
+            let tr = table.getElementsByTagName("tr");
+
+            for (let k = 0; k < 6; k++){
+
+                let newTh = document.createElement("th");
+                newTh.classList.add("th-sm");
                 let checkBox = document.createElement("input");
                 checkBox.type="checkbox";
                 checkBox.id = "checkbox" + counter; 
-                checkBox.checked = true;             
-                
+                checkBox.checked = true;
+
                 let stringId = checkBox.id;                
-                let id = stringId.substring(stringId.length-1);
-                console.log(id);
+                let id = stringId.substring(stringId.length-1);                
 
                 checkBox.addEventListener("change", hideColum);
 
                 function hideColum(event) {
 
-                if(this.checked){
-                    for (let j = 1; j < tr.length; j++) {
-                        let cellsToHide = tr[j].getElementsByTagName("td")[id];
-                        cellsToHide.style.visibility = "";
+                    if(this.checked){
+                        for (let j = 1; j < tr.length; j++) {
+                            if (j == 1){
+                                let hideHeader = tr[j].getElementsByTagName("th")[id];
+                                
+                                hideHeader.style.visibility = "";
+                            } else {
+                                let cellsToHide = tr[j].getElementsByTagName("td")[id];
+                                cellsToHide.style.visibility = "";
+                            }
+                            
+                        }
+                    } else {
+                        for (let j = 1; j < tr.length; j++) {
+                            if (j == 1){
+                                let hideHeader = tr[j].getElementsByTagName("th")[id];
+                                console.dir(hideHeader);
+                                hideHeader.style.visibility = "hidden";
+                            } else {
+                                let cellsToHide = tr[j].getElementsByTagName("td")[id];
+                                cellsToHide.style.visibility = "hidden";
+                            }
+                            
+                        }
                     }
-                } else {
-                    for (let j = 1; j < tr.length; j++) {
-                        let cellsToHide = tr[j].getElementsByTagName("td")[id];
-                        cellsToHide.style.visibility = "hidden";
-                    }
+
                 }
+                newTh.appendChild(checkBox);
+                newRow.appendChild(newTh);
+                counter++; 
+            }
 
-                }   
-
-                header.appendChild(checkBox);
-                counter++;
-            });
-
-            
+            table.childNodes[1].insertBefore(newRow, table.childNodes[1].childNodes[1]);
             
             let input = document.getElementById("searchInput");
             let txtValue;
             input.addEventListener("keyup", searchData);
 
-
             function searchData(event) {
                 let filter = input.value.toUpperCase();
-                for (let i = 1; i < tr.length; i++) {
+                for (let i = 2; i < tr.length; i++) {
                     let td = tr[i].getElementsByTagName("td")[0];
                     if (td) {
                         txtValue = td.textContent || td.innerText;
