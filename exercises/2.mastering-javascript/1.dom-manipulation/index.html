@@ -408,19 +408,16 @@
                         for (let j = 1; j < tr.length; j++) {
                             if (j == 1){
                                 let hideHeader = tr[j].getElementsByTagName("th")[id];
-                                
                                 hideHeader.style.visibility = "";
                             } else {
                                 let cellsToHide = tr[j].getElementsByTagName("td")[id];
                                 cellsToHide.style.visibility = "";
                             }
-                            
                         }
                     } else {
                         for (let j = 1; j < tr.length; j++) {
                             if (j == 1){
-                                let hideHeader = tr[j].getElementsByTagName("th")[id];
-                                console.dir(hideHeader);
+                                let hideHeader = tr[j].getElementsByTagName("th")[id];                                
                                 hideHeader.style.visibility = "hidden";
                             } else {
                                 let cellsToHide = tr[j].getElementsByTagName("td")[id];
@@ -513,7 +510,7 @@
                 if (x > 1092) {
 
                 }  else {
-                        mousy.style.left = x + 'px';
+                        mousy.style.left = x + 'px';    
                 }
             
             }
@@ -537,9 +534,11 @@
             function generateName() {
 
                 let base = document.getElementsByClassName("col-12 bg-white shadow-sm p-4 mx-auto mt-4");
-                
-                let baseArray = Array.from(base);                
+                console.dir(base);
+                let baseArray = Array.from(base);
+                console.dir(baseArray);                
                 let target = baseArray[baseArray.length-1].lastChild.previousSibling;                                
+                console.dir(baseArray.childNodes);
 
                 let label = document.createElement("label");                
                 let barCounter = 1;
