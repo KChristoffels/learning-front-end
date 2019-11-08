@@ -112,10 +112,21 @@
                     output.innerHTML = "Here is your result: " + (parseFloat(input) + parseFloat(input2));
                     break;
                 case "-":
-                    output.innerHTML = "Here is your result: " + (parseFloat(input) - parseFloat(input2));        
+                    if(input2 > input){
+                        output.innerHTML = "You can't substract a number from a smaller number";
+                    } else {
+                        output.innerHTML = "Here is your result: " + (parseFloat(input) - parseFloat(input2)); 
+                    }                           
                     break;
                 case "/":
-                    output.innerHTML = "Here is your result: " + (parseFloat(input) / parseFloat(input2));    
+                    if(input2 == 0) {
+                        output.innerHTML = "You can't divide by zero";
+                    } else if (isNaN(parseInt(parseFloat(input) / parseFloat(input2)))){
+                        output.innerHTML = "Result is not an integer";
+                    } else {
+                        output.innerHTML = "Here is your result: " + (parseFloat(input) / parseFloat(input2));
+                    }  
+                                          
                     break;
                 case "*":
                     output.innerHTML = "Here is your result: " + (parseFloat(input) * parseFloat(input2));;
