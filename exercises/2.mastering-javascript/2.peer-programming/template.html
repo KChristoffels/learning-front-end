@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fix me!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+
+</head>
+<style>
+    input {
+        margin: 0 0 20px 0;
+    }
+
+    button {
+        width: 422px;
+        border-radius: 12px;
+    }
+
+    .output {
+        border: 3px solid rgb(156, 2, 2);
+        width: 422px;
+        height: 100px;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 12px;
+    }
+</style>
+<body class="bg-dark pt-4">
+<div id="exercisesHolder" class="container">
+
+
+    <div class="row">
+        <div id="container" class="col-12 bg-white shadow-sm p-4 mx-auto mt-4 border">
+        <div id="error"></div>
+        <input id="input" type="text">
+        <select name="select" id="select">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input id="input2" type="text">
+        <br>
+        <button id="calculate" class="btn btn-primary">Calculate!</button>
+        <div id="output" class="output">0</div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="https://kit.fontawesome.com/b6d9cb82d5.js" crossorigin="anonymous"></script>
+
+<script>
+    let button = document.getElementById("calculate");
+    console.log(button.innerHTML);
+    button.addEventListener("click", logClick);
+
+    function logClick(event) {
+
+        
+        console.log("Clicky Clicky!");
+        button.classList.replace("btn", "btn-success");
+        let icon = document.createElement("i");
+        icon.classList.add("fas");
+        icon.classList.add("fa-spinner");
+        icon.classList.add("fa-spin");
+
+        
+        button.innerHTML = "Calculating...";
+        
+        button.prepend(icon);
+
+        setTimeout(removeChild, 500);
+        setTimeout(changeText, 500);
+
+        function removeChild(){
+            button.removeChild(icon);
+        }
+        
+        
+        function changeText() {
+
+            button.innerHTML = "Calculate!";
+        }
+
+        setTimeout(showInput, 500);
+
+        function showInput(){
+            
+
+            let input = document.getElementById("input").value;
+            
+            let input2 = document.getElementById("input2").value;
+            let output = document.getElementById("output");
+
+            if ((input == "") || (input2 == "")) {
+                let errorMessage = document.getElementById("error");
+                errorMessage.innerHTML = "You left one of the inputfields empty";
+            } else {
+                let operator = document.getElementById("select").value;
+                switch (operator) {
+                case "+":
+                    output.innerHTML = "Here is your result: " + (parseFloat(input) + parseFloat(input2));
+                    break;
+                case "-":
+                    output.innerHTML = "Here is your result: " + (parseFloat(input) - parseFloat(input2));        
+                    break;
+                case "/":
+                    output.innerHTML = "Here is your result: " + (parseFloat(input) / parseFloat(input2));    
+                    break;
+                case "*":
+                    output.innerHTML = "Here is your result: " + (parseFloat(input) * parseFloat(input2));;
+                    break;                
+                default:
+                    output.innerHTML = "EPIC FAIL NO OPERATOR ASSIGNED";
+                }
+
+
+
+                
+            }            
+        }
+
+        
+        
+
+        
+        
+    }
+
+
+
+    //setTimeout(changeClass, 500);
+
+    //function changeClass() {
+        //button.classList.replace("btn-success", "btn-primary");
+   //     
+    //}
+
+
+</script>
+</body>
+</html>
