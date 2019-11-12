@@ -121,7 +121,7 @@
                 case "/":
                     if(input2 == 0) {
                         output.innerHTML = "You can't divide by zero";
-                    } else if (isNaN(parseInt(parseFloat(input) / parseFloat(input2)))){
+                    } else if (parseInt((parseFloat(input) / parseFloat(input2))) !== (parseFloat(input) / parseFloat(input2))){
                         output.innerHTML = "Result is not an integer";
                     } else {
                         output.innerHTML = "Here is your result: " + (parseFloat(input) / parseFloat(input2));
