@@ -8,12 +8,12 @@
     <body> 
         <h1>Welcome to snake!</h1>
 
-        <button id="play" value="play">Play snake!</button> 
-        <input id="colorSelector">
-            <select>
-                <option></option>
-                <option></option>
-                <option></option>
+        <button id="play" value="play">Play snake!</button>        
+            <select id="colorSelector">
+                <option>green</option>
+                <option>blue</option>
+                <option>red</option>
+                <option>orange</option>
             </select>
         
 
@@ -27,6 +27,8 @@
         let play = document.getElementById("play");
         play.addEventListener("click", playSnake);
 
+        let colorSelector = document.getElementById("colorSelector");       
+
         var anaconda = setInterval(0);
 
         let canvas = document.getElementById("gameCanvas");
@@ -36,7 +38,7 @@
         let score = 0;
         let dx = 10;
         let dy = 0;
-        let snakeSpeed = 250;
+        let snakeSpeed = 150;
         
         let snake = [  {x: 150, y: 150},  {x: 140, y: 150},  {x: 130, y: 150},  {x: 120, y: 150},  {x: 110, y: 150},];
         function drawSnakePart(snakePart) {
@@ -47,6 +49,8 @@
         } // drawSnakePart gets fed each coordinate from the snake-array and subsequently draws the rectangle
         
         drawSnake();
+
+        
         
         
         
@@ -61,7 +65,7 @@
                        
             const didEatFood = snake[0].x === foodX && snake[0].y === foodY;
                 if (didEatFood) {
-                    snakeSpeed= snakeSpeed-(0.5); // everytime the snake eats, speed is increased by 0.5
+                    snakeSpeed= snakeSpeed-(0.75); // everytime the snake eats, speed is increased by 0.75
                     console.log(snakeSpeed);                    
                     createFood();
                     drawFood();
@@ -107,6 +111,7 @@
             if (keyPressed === UP_KEY && !goingDown) {    dx = 0;    dy = -10;  }
             if (keyPressed === RIGHT_KEY && !goingLeft) {    dx = 10;    dy = 0;  }
             if (keyPressed === DOWN_KEY && !goingUp) {    dx = 0;    dy = 10;  }
+            
         }
         function randomTen(min, max) {  return Math.round((Math.random() * (max-min) + min) / 10) * 10;}
         function createFood() {  
