@@ -1,0 +1,65 @@
+body {
+    
+}
+.highestScore {
+    align-self: center;
+    margin-bottom: 20px;
+}
+.button {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ed3330;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+}
+.button:hover {
+    background: #434343;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+}
+.pageContainer {
+    display: flex;
+    width: 100%; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+    
+}
+.title {
+    
+}
+.gameCanvas {
+    height: 300px;
+    width: 300px;    
+
+}
+.gameAndLeaderBoard {
+display: flex;
+flex-flow: row;
+
+  
+}
+.leaderBoard {
+ 
+}
+.buttonContainer {
+
+}
+.scoreBoard {
+    margin-top: 20px;
+    align-self: center;
+    margin-bottom: 20px;
+    width: 100px;
+}
+.userName {
+    width: 100px;
+    align-self: center;
+    margin-bottom: 20px;
+}
