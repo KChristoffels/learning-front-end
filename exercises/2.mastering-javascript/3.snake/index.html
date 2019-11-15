@@ -12,16 +12,12 @@
         
             <h1 class="title">Welcome to snake!</h1>
             <input id="userName" class="userName">
-            <input type="color" id="colorPicker">
-            <div id="buttonContainer" class="buttonContainer">   
+            
+            <div id="buttonContainer" class="buttonContainer">                     
                     <button id="play" value="play" class="button">Play snake!</button> 
                     <button id="reset" class="button">reset</button>
-                    <select id="colorSelector" name="colorSelector" class="button">
-                            <option>green</option>
-                            <option>blue</option>
-                            <option>red</option>
-                            <option>orange</option>
-                    </select>
+                    <button class="buttonC">Snakecolor       <input type="color" id="colorPicker" class="colorPicker"></button>
+                    <button class="buttonC">Background       <input type="color" id="colorPickerB" class="colorPicker"></button>  
                     
             </div>
                 
@@ -53,12 +49,10 @@
         
 
     <script>
-        //let highScores = [0];
-       // window.localStorage.setItem(highScores, JSON.stringify(highScores));
+        console.dir(document.getElementById("userName").value);
+        
         let colorPicker = document.getElementById("colorPicker");
         colorPicker.addEventListener("change", changeColor);
-
-        
 
         let play = document.getElementById("play");
         play.addEventListener("click", playSnake);             
@@ -75,8 +69,7 @@
         let dy = 0;
         let snakeSpeed = 150;
 
-        //let colorSelector = document.getElementById("colorSelector"); 
-        //colorSelector.addEventListener("change", changeColor);
+        
         colorPicker.value = "green";
 
         let snake = [  {x: 150, y: 150},  {x: 140, y: 150},  {x: 130, y: 150},  {x: 120, y: 150},  {x: 110, y: 150},];
@@ -101,7 +94,7 @@
             let grd = context.createLinearGradient(snake[0].x,snake[0].y,snake[snake.length-1].x,snake[snake.length-1].y);
             grd.addColorStop(0, colorPicker.value);
             grd.addColorStop(1, "white");
-            context.fillStyle = grd; context.strokeStyle = colorSelector.value; context.fillRect(snakePart.x, snakePart.y, 10, 10); context.strokeRect(snakePart.x, snakePart.y, 10, 10);
+            context.fillStyle = grd; context.strokeStyle = colorPicker.value; context.fillRect(snakePart.x, snakePart.y, 10, 10); context.strokeRect(snakePart.x, snakePart.y, 10, 10);
         } 
 
         function drawSnake() {
@@ -113,24 +106,9 @@
        
             
 
-        function changeColor(event) { // assigns new color to the snake when selected from the list
+        function changeColor(event) { // assigns new color to the snake when selected from the picker
             
-            /* switch(true){
-                case (colorSelector.value == "green"):                     
-                    drawSnake()                                       
-                    break;
-                case (colorSelector.value == "blue"):                    
-                    drawSnake()                                       
-                    break;
-                case (colorSelector.value == "red"): 
-                    drawSnake()                                        
-                    break;
-                case (colorSelector.value == "orange"):
-                    drawSnake()                                        
-                    break;                    
-                default:
-            }
-            */
+            
            drawSnake()
 
                         
@@ -140,15 +118,15 @@
             let updateScore = [];
             
                 if(window.localStorage.getItem('updateScore') == null) {
-                    console.log()                
-                    updateScore.unshift(score);
+                    let user = document.getElementById("userName").value;              
+                    updateScore.unshift(user + " " + score);
                     console.dir(updateScore);                
-                    leader.innerHTML = "Highest score: " + score;
+                    leader.innerHTML = "Highest score: " + user + " " + score;
                     window.localStorage.setItem('updateScore', JSON.stringify(updateScore));
                 } else {
                     updateScore = JSON.parse(window.localStorage.getItem('updateScore'));
-                    //let scoreArray = Array.from(updateScore);
-                    updateScore.unshift(score);
+                    
+                    updateScore.unshift(user + " " + score);
                     console.log(updateScore);
                     
                     if (updateScore.length > 5) {
@@ -156,10 +134,19 @@
                     }
                     console.dir(updateScore);
 
-                    let topScore = updateScore.reduce((firstNumber, otherNumbers) => Math.max(firstNumber, otherNumbers));                    
+                    let users = [];
+                    let numbers = [];
+
+                    for (let i = 0; i < updateScore.length; i++) {
+                        let split = updateScore[i].split(" ");
+                        users.push(split[0]);
+                        numbers.push(split[1]);
+                    }
+
+                    /*let topScore = numbers.reduce((firstNumber, otherNumbers) => Math.max(firstNumber, otherNumbers));                    
                     leader.innerHTML = "Highest score: " + topScore;
                     localStorage.clear();
-                    window.localStorage.setItem('updateScore', JSON.stringify(updateScore));
+                    window.localStorage.setItem('updateScore', JSON.stringify(updateScore));*/
 
                 } 
 
@@ -169,10 +156,9 @@
             context.fillStyle = 'white'; context.strokeStyle = 'black'; context.fillRect(0, 0, canvas.width, canvas.height); context.strokeRect(0, 0, canvas.width, canvas.height);
         } 
         function moveSnake() {
-            colorSelector.style.display = "none";
             const head = {x: snake[0].x + dx, y: snake[0].y + dy};
             snake.unshift(head); // makes a new head and adds it to the front to simulate moving
-            if (didGameEnd()) { clearInterval(anaconda); console.log("Game over \b insert coin"); saveHighScore()} 
+            if (didGameEnd()) { clearInterval(anaconda); console.log("Game over \b insert coin"); saveHighScore(); setTimeout(alert("Game over!"), 500); setTimeout(resetSnake, 5000)} 
             // when the snake head touches one of its own parts the game ends
             else {            
                        
@@ -225,7 +211,7 @@
             drawSnake();
             createFood();
             drawFood();
-            colorSelector.style.display = "";                      
+                                  
         } 
                                  
         
@@ -266,7 +252,11 @@
         drawFood();
 
         function playSnake(event){
-           anaconda = setInterval(moveSnake, snakeSpeed);
+            if (document.getElementById("userName").value == "") {
+                alert("You must enter a username before playing");
+            } else {
+                anaconda = setInterval(moveSnake, snakeSpeed);
+            }           
                        
         }
 
