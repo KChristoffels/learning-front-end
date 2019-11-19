@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The impossible game!</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<input id="input">
+
+<button class="button" id="add">Add to shopping list (0)</button>
+
+<table id="table" class="table">    
+        <tr>
+            <th>-----------</th>
+            <th>Grocerylist</th>
+        </tr>    
+</table>
+
+<button class="button saveButton" id="save">Save</button>
+
+<script src="https://kit.fontawesome.com/b6d9cb82d5.js" crossorigin="anonymous"></script>
+
+<script>
+    let groceryList = [];
+    //let gradient = 0;
+    //let backgroundColor = 'rgba(0, 0, 0, 0)'; only for remembering the base gradient
+    let counter = 0;
+    let save = document.getElementById("save");
+    save.addEventListener("click", saveList);
+    
+    let button = document.getElementById("add");
+    button.addEventListener("click", clickAddTo);
+    
+    let input = document.getElementById("input");
+    let table = document.getElementById("table");
+
+    function showTable () {
+        if(window.localStorage.getItem('groceryList') !== null) {
+            groceryList = [];
+            goods = JSON.parse(window.localStorage.getItem('groceryList'));
+            groceryList = Array.from(goods);
+
+            console.dir(groceryList);            
+
+            groceryList.forEach(product => {                
+                counter++;
+                let newRow = document.createElement("tr");
+                let container = document.createElement("div");
+
+                let checkBox = document.createElement("input");
+                checkBox.type="checkbox";
+                checkBox.checked = false;
+                checkBox.addEventListener("change", removeRow);
+
+                let editButton = document.createElement("button");
+                editButton.innerHTML = "edit";
+                editButton.addEventListener("click", editProduct);
+
+                
+
+                function removeRow(event) {
+                    groceryList = [];
+                    checkBox.parentNode.parentNode.parentNode.removeChild(container.parentNode);
+                    counter--;
+                    button.innerHTML = "Add to shopping list (" + counter + ")";
+
+                    let rows = table.childNodes;                    
+                    
+                    for (let i = 2; i < rows.length; i++) {                        
+                        groceryList.push(rows[i].childNodes[1].innerHTML);
+                        console.dir(groceryList);
+                    }
+                }
+
+                container.appendChild(checkBox);                
+
+                let newProduct = document.createElement("td");
+                newProduct.innerHTML = input.value;
+                //newProduct.style.backgroundColor = `rgba(0, 0, 0, ${gradient})`;
+                let productFile = newProduct.innerHTML;
+                groceryList.push(productFile);
+
+                function editProduct(event) {
+                    let productDescription = newProduct.innerHTML;
+                    let productInput = document.createElement("input");
+
+                    productInput.addEventListener("keyup", pressEnter);
+                    
+
+                    productInput.value = productDescription;
+                    let inputContainer = document.createElement("td");
+                    inputContainer.appendChild(productInput);
+
+                    function pressEnter(event) {
+                        if (characterCode == 13) {
+                            let restateProduct = document.createElement("td");
+                            restateProduct.innerHTML = productInput.value;
+                            newRow.removeChild(newRow.childNodes(1));
+                            newRow.appendChild(restateProduct);
+                        }
+                    }
+
+                    newRow.removeChild(newRow.childNodes(1));
+                    newRow.appendChild(inputContainer);
+
+                }
+
+                container.appendChild(editButton);
+                
+                newRow.appendChild(container);
+                newRow.appendChild(newProduct);
+                
+                table.appendChild(newRow);
+
+                               
+
+                button.innerHTML = "Add to shopping list (" + counter + ")";
+            });
+        }        
+    }
+
+    window.onload = showTable;
+
+    function clickAddTo(event) {
+
+        let icon = document.createElement("i");
+        icon.classList.add("fas");
+        icon.classList.add("fa-spinner");
+        icon.classList.add("fa-spin");
+
+        button.prepend(icon);
+
+        function removeChild(){
+            button.removeChild(icon);
+        }
+
+        function putInCart() {
+            
+            function searchClone () {
+                let tr = table.getElementsByTagName("tr");
+                let filter = input.value.toUpperCase();
+                let txtValue;
+                for (let j = 2; j < tr.length; j++) {
+                    let td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1){
+                            alert("This product is already in the list");
+                        } 
+                    }
+                }
+            }
+            
+            
+
+            if (input.value == "") {
+                alert("Inputfield is empty.")
+            } else {
+                counter++;
+                let newRow = document.createElement("tr");
+                let container = document.createElement("div");
+
+                let checkBox = document.createElement("input");
+                checkBox.type="checkbox";
+                checkBox.checked = false;
+                checkBox.addEventListener("change", removeRow);
+
+                let editButton = document.createElement("button");
+                editButton.innerHTML = "edit";
+                editButton.addEventListener("click", editProduct);
+
+                
+
+                function removeRow(event) {
+                    groceryList = [];
+                    checkBox.parentNode.parentNode.parentNode.removeChild(container.parentNode);
+                    counter--;
+                    button.innerHTML = "Add to shopping list (" + counter + ")";
+
+                    let rows = table.childNodes;                    
+                    
+                    for (let i = 2; i < rows.length; i++) {                        
+                        groceryList.push(rows[i].childNodes[1].innerHTML);                        
+                    }
+                }
+
+                container.appendChild(checkBox);                
+
+                let newProduct = document.createElement("td");
+                newProduct.innerHTML = input.value;
+                //newProduct.style.backgroundColor = `rgba(0, 0, 0, ${gradient})`;
+                let productFile = newProduct.innerHTML;
+                groceryList.push(productFile);
+
+                function editProduct(event) {
+                    let productDescription = newProduct.innerHTML;
+                    let productInput = document.createElement("input");
+
+                    productInput.addEventListener("keyup", pressEnter);
+                    
+
+                    productInput.value = productDescription;
+                    let inputContainer = document.createElement("td");
+                    inputContainer.appendChild(productInput);
+
+                    function pressEnter(event) {
+                        if (event.keyCode === 13) {
+                            let restateProduct = document.createElement("td");
+                            restateProduct.innerHTML = productInput.value;
+                            newRow.removeChild(newRow.childNodes[1]);
+                            newRow.appendChild(restateProduct);
+                        }
+                    }
+
+                    newRow.removeChild(newRow.childNodes[1]);
+                    newRow.appendChild(inputContainer);
+
+                }
+
+                container.appendChild(editButton);
+                
+                newRow.appendChild(container);
+                newRow.appendChild(newProduct);
+                
+                table.appendChild(newRow);
+
+                //gradient++;                
+
+                button.innerHTML = "Add to shopping list (" + counter + ")";
+            }
+        }
+
+        setTimeout(removeChild, 500)
+        setTimeout(putInCart, 700)
+
+    }
+
+    function saveList (event) {
+        if(window.localStorage.getItem('groceryList') == null) {
+            window.localStorage.setItem('groceryList', JSON.stringify(groceryList));
+            
+        } else {
+            localStorage.clear();
+            window.localStorage.setItem('groceryList', JSON.stringify(groceryList));
+            console.dir(groceryList);
+           
+        }
+       
+    }
+
+    
+    
+
+    
+</script>
+
+</body>
+</html> 
