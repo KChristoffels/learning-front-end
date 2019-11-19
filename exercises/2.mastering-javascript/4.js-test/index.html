@@ -39,12 +39,13 @@
     function showTable () {
         if(window.localStorage.getItem('groceryList') !== null) {
             groceryList = [];
-            goods = JSON.parse(window.localStorage.getItem('groceryList'));
-            groceryList = Array.from(goods);
+            
+            let goods = JSON.parse(window.localStorage.getItem('groceryList'));
+             
 
-            console.dir(groceryList);            
+            console.dir(goods);            
 
-            groceryList.forEach(product => {                
+            goods.forEach(product => {                
                 counter++;
                 let newRow = document.createElement("tr");
                 let container = document.createElement("div");
@@ -77,7 +78,7 @@
                 container.appendChild(checkBox);                
 
                 let newProduct = document.createElement("td");
-                newProduct.innerHTML = input.value;
+                newProduct.innerHTML = product;
                 //newProduct.style.backgroundColor = `rgba(0, 0, 0, ${gradient})`;
                 let productFile = newProduct.innerHTML;
                 groceryList.push(productFile);
