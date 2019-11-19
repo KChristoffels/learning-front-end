@@ -30,11 +30,13 @@
                     <option>Vampire</option>
                 </select>
             </div>
-            <div id="healthData1"><div>Currenthealth: </div> <progress id="health1" value="100" max="100"></progress> <div>Maxhealth: 100</div></div>            
-            <div id="moves1">
-                <button id="attack">attack</button>
-                <button id="heal">heal</button>
-                <button id="yield">yield</button>
+            <div id="combatWindow1">
+                <div id="healthData1"><div id="currentHealth1">Currenthealth: </div> <progress id="health1" value="100" max="100"></progress> <div id="maxHealth1">Maxhealth: 100</div></div>            
+                <div id="moves1">
+                    <button id="attack">attack</button>
+                    <button id="heal">heal</button>
+                    <button id="yield">yield</button>
+                </div>
             </div>
 
             
@@ -60,11 +62,13 @@
                         <option>Vampire</option>
                     </select>
             </div>
-            <div id="healthData2"><div>Currenthealth: </div> <progress id="health1" value="100" max="100"></progress> <div>Maxhealth: 100</div></div> 
-            <div id="moves2">
-                    <button id="attack2">attack</button>
-                    <button id="heal2">heal</button>
-                    <button id="yield2">yield</button>   
+            <div id="combatWindow2">
+                <div id="healthData2"><div id="currentHealth2">Currenthealth: </div> <progress id="health1" value="100" max="100"></progress> <div id="maxHealth2">Maxhealth: 100</div></div> 
+                <div id="moves2">
+                        <button id="attack2">attack</button>
+                        <button id="heal2">heal</button>
+                        <button id="yield2">yield</button>   
+                </div>
             </div>
 
         </div>        
@@ -73,9 +77,9 @@
 
     <button id="create1">Create players</button>
 
-
-    <div>Log:</div>
-    <div>Filltertext</div>
+    <div id="logContainer" class="logContainer"><div id="log">Log:</div></div>
+    
+    
 
   <script src="character.js"></script>
 </body>
