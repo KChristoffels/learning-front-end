@@ -7,9 +7,12 @@ function Person(name, item, race){
     this.race = race;
     this.item = item;    
 
-    this.min = 3;
+    this.minDamage = 3;
+    this.minHealing = 3;
     this.maxDamage = 20;
     this.maxHealing = 30;
+
+    
 
     switch (true) {
         case (race == "Orc"):
@@ -27,7 +30,10 @@ function Person(name, item, race){
 
     this.heal = function(){};
 
-    this.damage = function(){};
+    this.damage = function(){
+        let doneDamage = Math.floor(Math.random() * 20) + 3;
+        return doneDamage;                
+    };
 
     this.totalDamage = this.damage();
 
