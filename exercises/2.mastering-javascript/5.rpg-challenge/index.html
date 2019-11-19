@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RPG-challenge</title>
+  <link rel="stylesheet" href="styleSheet.css">
+</head>
+
+<body>
+
+    <div id="playingField" class="playingField">
+
+   
+        <div id="player1Window" class="player1Window">
+
+            <h1>Player 1</h1>
+            <div id="stats1">
+                <input id="name1">
+                <select id="items1">
+                    <option>Boots</option>
+                    <option>Staff</option>
+                    <option>Sword</option>
+                    <option>Bow</option>
+                </select>
+                <select id="race1">
+                    <option>Human</option>
+                    <option>Orc</option>
+                    <option>Elf</option>
+                    <option>Vampire</option>
+                </select>
+            </div>
+            <div id="healthData1"><div>Currenthealth: </div> <progress id="health1" value="100" max="100"></progress> <div>Maxhealth: 100</div></div>            
+            <div id="moves1">
+                <button id="attack">attack</button>
+                <button id="heal">heal</button>
+                <button id="yield">yield</button>
+            </div>
+
+            
+        </div>
+
+        
+
+        <div id="player2Window" class="player2Window">
+
+            <h1>Player 2</h1>
+            <div id="stats2">
+                    <input id="name2">
+                    <select id="items2">
+                        <option>Boots</option>
+                        <option>Staff</option>
+                        <option>Sword</option>
+                        <option>Bow</option>
+                    </select>
+                    <select id="race2">
+                        <option>Human</option>
+                        <option>Orc</option>
+                        <option>Elf</option>
+                        <option>Vampire</option>
+                    </select>
+            </div>
+            <div id="healthData2"><div>Currenthealth: </div> <progress id="health1" value="100" max="100"></progress> <div>Maxhealth: 100</div></div> 
+            <div id="moves2">
+                    <button id="attack2">attack</button>
+                    <button id="heal2">heal</button>
+                    <button id="yield2">yield</button>   
+            </div>
+
+        </div>        
+    
+    </div>
+
+    <button id="create1">Create players</button>
+
+
+    <div>Log:</div>
+    <div>Filltertext</div>
+
+  <script src="character.js"></script>
+</body>
+</html>
