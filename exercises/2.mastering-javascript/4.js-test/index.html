@@ -41,9 +41,6 @@
             groceryList = [];
             
             let goods = JSON.parse(window.localStorage.getItem('groceryList'));
-             
-
-            console.dir(goods);            
 
             goods.forEach(product => {                
                 counter++;
@@ -57,9 +54,7 @@
 
                 let editButton = document.createElement("button");
                 editButton.innerHTML = "edit";
-                editButton.addEventListener("click", editProduct);
-
-                
+                editButton.addEventListener("click", editProduct);                
 
                 function removeRow(event) {
                     groceryList = [];
@@ -87,8 +82,7 @@
                     let productDescription = newProduct.innerHTML;
                     let productInput = document.createElement("input");
 
-                    productInput.addEventListener("keyup", pressEnter);
-                    
+                    productInput.addEventListener("keyup", pressEnter);                    
 
                     productInput.value = productDescription;
                     let inputContainer = document.createElement("td");
@@ -113,9 +107,7 @@
                 newRow.appendChild(container);
                 newRow.appendChild(newProduct);
                 
-                table.appendChild(newRow);
-
-                               
+                table.appendChild(newRow);                               
 
                 button.innerHTML = "Add to shopping list (" + counter + ")";
             });
