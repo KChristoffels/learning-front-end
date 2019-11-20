@@ -172,12 +172,13 @@ function Person(name, item, race){
 
     this.heal = function(){};
 
-    this.damage = function(){
+    /*this.damage = function(){
         let doneDamage = Math.round(Math.random() * 20) + 3;
         return doneDamage;                
-    };
+    };*/
 
-    this.totalDamage = this.damage();
+    /*this.totalDamage = this.damage();
+    */
 
     this.displayChar = function(){
         return console.log(`I am a ${this.race}, I wield a ${this.item}, my total health point are ${this.maxHealth}`);
@@ -209,6 +210,8 @@ let maxHealth1 = document.getElementById("maxHealth1");
 let maxHealth2 = document.getElementById("maxHealth2");
 
 let log = document.getElementById("log");
+log.style.height = "200px";
+log.style.overflow = "scroll";
 
 combatWindow1.style.display = "none";
 combatWindow2.style.display = "none";
@@ -219,10 +222,53 @@ create.addEventListener("click", generatePlayers);
 
 function generatePlayers(event) {
     let player1 = new Person(name1.value, items1.value, race1.value);
-    let player2 = new Person(name2.value, items2.value, race2.value); 
+    let player2 = new Person(name2.value, items2.value, race2.value);
+
+    let attack1 = document.getElementById("attack1");
+    attack1.addEventListener("click", attackOpponent);
+    let attack2 = document.getElementById("attack2");
+    attack2.addEventListener("click", attackOpponent);
+
+    let heal1 = document.getElementById("heal1");
+    heal1.addEventListener("click", healSelf);
+    let heal2 = document.getElementById("heal2");
+    heal2.addEventListener("click", healSelf);
+
+    let yield1 = document.getElementById("yield1");
+    let yield2 = document.getElementById("yield2");
+
+    yield1.addEventListener("click", forfaitGame);
+    yield2.addEventListener("click", forfaitGame);
+
+    let whoGoesFirst = Math.floor((Math.random() * 2) + 1);
+
+    console.log(whoGoesFirst);
+
+    if (whoGoesFirst == 1) {
+        log.innerHTML += "Player 1 goes first <br/>"
+        attack2.style.pointerEvents = "none";
+        heal2.style.pointerEvents = "none";
+        yield2.style.pointerEvents = "none";
+        scrollLog()
+    } else {
+        log.innerHTML += "Player 2 goes first <br/>"
+        attack1.style.pointerEvents = "none";
+        heal1.style.pointerEvents = "none";
+        yield1.style.pointerEvents = "none";
+        scrollLog()
+    }
+    
+    
+    let healthBar1 = document.getElementById("health1");
+    let healthBar2 = document.getElementById("health2");
+
+    healthBar1.value = player1.currentHealth;
+    healthBar1.max = player1.currentHealth;
+    healthBar2.value = player2.currentHealth;
+    healthBar2.max = player2.currentHealth;
     
     console.log(player1.minDamage);
-    console.log(player1.damage());
+    /*console.log(player1.damage()); */
     
     combatWindow1.style.display = "";
     combatWindow2.style.display = "";
@@ -238,17 +284,7 @@ function generatePlayers(event) {
     currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
     maxHealth2.innerHTML = "Maxhealth " + player2.maxHealth;
 
-    let attack1 = document.getElementById("attack1");
-    let attack2 = document.getElementById("attack2");
-
-    let heal1 = document.getElementById("heal1");
-    let heal2 = document.getElementById("heal2");
-
-    let yield1 = document.getElementById("yield1");
-    let yield2 = document.getElementById("yield2");
-
-    yield1.addEventListener("click", forfaitGame);
-    yield2.addEventListener("click", forfaitGame);
+    
 
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
@@ -268,18 +304,118 @@ function generatePlayers(event) {
         setTimeout(resetGame, 4000);
     }
 
-    function resetGame () {
-        combatWindow1.style.display = "none";
-        combatWindow2.style.display = "none";
-        log.style.display = "none";
-        
-        log.innerHTML = "";
-
-        stats1.style.display = "";
-        stats2.style.display = "";
-        create.style.display = "";
+    function scrollLog () {
+        log.scrollTop = log.scrollHeight - log.clientHeight;
     }
 
+    function attackOpponent(event) {
+        let doneDamage;
+
+        if(event.target.id == "attack1") {
+
+            attack2.style.pointerEvents = "auto";
+            heal2.style.pointerEvents = "auto";
+            yield2.style.pointerEvents = "auto";
+
+            attack1.style.pointerEvents = "none";
+            heal1.style.pointerEvents = "none";
+            yield1.style.pointerEvents = "none";
+
+            doneDamage = Math.round(Math.random() * player1.maxDamage) + player1.minDamage;
+            player2.currentHealth -= doneDamage;
+            healthBar2.value -= doneDamage;
+
+            if (player2.currentHealth <= 0) {
+                var el = document.createElement("div");
+                el.setAttribute("style","position:absolute;top:40%;left:38%;background-color:white;");
+
+                el.innerHTML = "Player 2 has been defeated"   
+                
+                document.body.appendChild(el);
+            
+                setTimeout(function(){el.parentNode.removeChild(el);},3000);
+
+                setTimeout(resetGame, 4000);
+            }
+
+            currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
+            let logMessage = `Player 1 attacked player 2 for ${doneDamage} damage <br/>`
+            log.innerHTML += logMessage;
+            scrollLog()   
+        } else {
+
+            attack2.style.pointerEvents = "none";
+            heal2.style.pointerEvents = "none";
+            yield2.style.pointerEvents = "none";
+
+            attack1.style.pointerEvents = "auto";
+            heal1.style.pointerEvents = "auto";
+            yield1.style.pointerEvents = "auto";
+
+            doneDamage = Math.round(Math.random() * player2.maxDamage) + player2.minDamage;
+            player1.currentHealth -= doneDamage;
+            healthBar1.value -= doneDamage;
+
+            if (player1.currentHealth <= 0) {
+                var el = document.createElement("div");
+                el.setAttribute("style","position:absolute;top:40%;left:38%;background-color:white;");
+
+                el.innerHTML = "Player 1 has been defeated"   
+                
+                document.body.appendChild(el);
+            
+                setTimeout(function(){el.parentNode.removeChild(el);},3000);
+
+                setTimeout(resetGame, 4000);
+            }
+
+            currentHealth1.innerHTML = "Currenthealth: " + player1.currentHealth;
+            let logMessage = `Player 2 attacked player 1 for ${doneDamage} damage <br/>`
+            log.innerHTML += logMessage;
+            scrollLog()               
+        }
+
+        console.log(doneDamage);
+    }
+
+    
+
+    function healSelf(event) {
+        let healingDone;
+
+        if(event.target.id == "heal1") {
+            healingDone = Math.round(Math.random() * player1.maxHealing) + player1.minHealing;
+            player1.currentHealth += healingDone;
+            healthBar1.value += healingDone;
+            currentHealth1.innerHTML = "Currenthealth: " + player1.currentHealth;
+            let logMessage = `Player 1 healed himself for ${healingDone} hitpoints <br/>`
+            log.innerHTML += logMessage;
+            scrollLog()  
+
+        } else {
+            healingDone = Math.round(Math.random() * player2.maxHealing) + player2.minHealing;
+            player2.currentHealth += healingDone;
+            healthBar2.value += healingDone;
+            currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
+            let logMessage = `Player 2 healed himself for ${healingDone} hitpoints <br/>`
+            log.innerHTML += logMessage;
+            scrollLog()   
+        }
+        
+    }
+
+}
+
+function resetGame () {
+    combatWindow1.style.display = "none";
+    combatWindow2.style.display = "none";
+    log.style.display = "none";
+    
+    log.innerHTML = "";
+
+    stats1.style.display = "";
+    stats2.style.display = "";
+    create.style.display = "";
 }
 
 
