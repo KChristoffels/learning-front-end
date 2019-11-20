@@ -10,11 +10,11 @@ function Person(name, item, race){
     
 
     switch (true) { //assigns statistics based on race and item carried
-        case (race == "Orc"): // orcs get extra health +20 but reduced healing -3
+        case (race == "orc"): // orcs get extra health +20 but reduced healing -3
             this.currentHealth = 120;
             this.maxHealth = 120;
             switch (true) { 
-                case (item == "Boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
+                case (item == "boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 3;
                     this.minHealing = 0;
                     this.maxDamage = 20;
@@ -22,7 +22,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 6) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1); 
                     break;
-                case (item == "Staff"): //staff increases healing +3
+                case (item == "staff"): //staff increases healing +3
                     this.minDamage = 3;
                     this.minHealing = 3;
                     this.maxDamage = 20;
@@ -30,7 +30,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 8) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Sword"): //sword increases damage +3
+                case (item == "sword"): //sword increases damage +3
                     this.minDamage = 6;
                     this.minHealing = 0;
                     this.maxDamage = 23;
@@ -38,7 +38,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 8) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
+                case (item == "bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 3;
                     this.minHealing = 0;
                     this.maxDamage = 20;
@@ -49,11 +49,11 @@ function Person(name, item, race){
                 default:
             }
             break;
-        case (race == "Elf"): // elves get lower health but increased dodge-chance
+        case (race == "elf"): // elves get lower health but increased dodge-chance
             this.currentHealth = 90;
             this.maxHealth = 90;
             switch (true) { 
-                case (item == "Boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
+                case (item == "boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 3;
                     this.minHealing = 3;
                     this.maxDamage = 20;
@@ -61,7 +61,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 4) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1); 
                     break;
-                case (item == "Staff"): //staff increases healing +3
+                case (item == "staff"): //staff increases healing +3
                     this.minDamage = 3;
                     this.minHealing = 6;
                     this.maxDamage = 20;
@@ -69,7 +69,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 6) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Sword"): //sword increases damage +3
+                case (item == "sword"): //sword increases damage +3
                     this.minDamage = 6;
                     this.minHealing = 3;
                     this.maxDamage = 23;
@@ -77,7 +77,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 6) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
+                case (item == "bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 3;
                     this.minHealing = 3;
                     this.maxDamage = 20;
@@ -92,7 +92,7 @@ function Person(name, item, race){
             this.currentHealth = 100;
             this.maxHealth = 100;
             switch (true) { 
-                case (item == "Boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
+                case (item == "boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 6;
                     this.minHealing = 6;
                     this.maxDamage = 17;
@@ -100,7 +100,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 6) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1); 
                     break;
-                case (item == "Staff"): //staff increases healing +3
+                case (item == "staff"): //staff increases healing +3
                     this.minDamage = 6;
                     this.minHealing = 9;
                     this.maxDamage = 17;
@@ -108,7 +108,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 8) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Sword"): //sword increases damage +3
+                case (item == "sword"): //sword increases damage +3
                     this.minDamage = 9;
                     this.minHealing = 6;
                     this.maxDamage = 17;
@@ -116,7 +116,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 8) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
+                case (item == "bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 6;
                     this.minHealing = 6;
                     this.maxDamage = 17;
@@ -131,7 +131,7 @@ function Person(name, item, race){
             this.currentHealth = 110;
             this.maxHealth = 110;
             switch (true) { 
-                case (item == "Boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
+                case (item == "boots"): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 3;
                     this.minHealing = 6;
                     this.maxDamage = 20;
@@ -139,7 +139,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 10) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1); 
                     break;
-                case (item == "Staff"): //staff increases healing +3
+                case (item == "staff"): //staff increases healing +3
                     this.minDamage = 3;
                     this.minHealing = 9;
                     this.maxDamage = 20;
@@ -147,7 +147,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 12) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Sword"): //sword increases damage +3
+                case (item == "sword"): //sword increases damage +3
                     this.minDamage = 6;
                     this.minHealing = 6;
                     this.maxDamage = 23;
@@ -155,7 +155,7 @@ function Person(name, item, race){
                     this.dodgeChance = Math.floor((Math.random() * 12) + 1);
                     this.critChance = Math.floor((Math.random() * 16) + 1);
                     break;
-                case (item == "Bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
+                case (item == "bow"): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 3;
                     this.minHealing = 6;
                     this.maxDamage = 20;
@@ -321,7 +321,12 @@ function generatePlayers(event) {
             heal1.style.pointerEvents = "none";
             yield1.style.pointerEvents = "none";
 
-            doneDamage = Math.round(Math.random() * player1.maxDamage) + player1.minDamage;
+            doneDamage = Math.round(Math.random() * (player1.maxDamage - player1.minDamage)) + player1.minDamage;
+
+            switch (true) {
+                case (player2.race = "elf")
+            }
+
             player2.currentHealth -= doneDamage;
             healthBar2.value -= doneDamage;
 
@@ -352,7 +357,7 @@ function generatePlayers(event) {
             heal1.style.pointerEvents = "auto";
             yield1.style.pointerEvents = "auto";
 
-            doneDamage = Math.round(Math.random() * player2.maxDamage) + player2.minDamage;
+            doneDamage = Math.round(Math.random() * (player2.maxDamage - player2.minDamage)) + player2.minDamage;
             player1.currentHealth -= doneDamage;
             healthBar1.value -= doneDamage;
 
@@ -377,25 +382,45 @@ function generatePlayers(event) {
 
         console.log(doneDamage);
     }
-
     
 
     function healSelf(event) {
         let healingDone;
 
         if(event.target.id == "heal1") {
-            healingDone = Math.round(Math.random() * player1.maxHealing) + player1.minHealing;
-            player1.currentHealth += healingDone;
+            healingDone = Math.round(Math.random() * (player1.maxHealing - player1.minHealing)) + player1.minHealing;
+            player1.currentHealth += healingDone;            
             healthBar1.value += healingDone;
-            currentHealth1.innerHTML = "Currenthealth: " + player1.currentHealth;
-            let logMessage = `Player 1 healed himself for ${healingDone} hitpoints <br/>`
-            log.innerHTML += logMessage;
-            scrollLog()  
+            if (player1.currentHealth > player1.maxHealth) {
+                player1.currentHealth = player1.maxHealth;
+                currentHealth1.innerHTML = "Currenthealth: " + player1.currentHealth;
+                let logMessage = `Player 1 healed himself for ${healingDone} hitpoints <br/>`
+                log.innerHTML += logMessage;
+                scrollLog()
+            } else {
+                currentHealth1.innerHTML = "Currenthealth: " + player1.currentHealth;
+                let logMessage = `Player 1 healed himself for ${healingDone} hitpoints <br/>`
+                log.innerHTML += logMessage;
+                scrollLog()
+            }
+              
 
         } else {
-            healingDone = Math.round(Math.random() * player2.maxHealing) + player2.minHealing;
+            healingDone = Math.round(Math.random() * (player2.maxHealing - player2.minHealing)) + player2.minHealing;
             player2.currentHealth += healingDone;
             healthBar2.value += healingDone;
+            if (player2.currentHealth > player2.maxHealth) {
+                player2.currentHealth = player2.maxHealth;
+                currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
+                let logMessage = `Player 2 healed himself for ${healingDone} hitpoints <br/>`
+                log.innerHTML += logMessage;
+                scrollLog()
+            } else {
+                currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
+                let logMessage = `Player 2 healed himself for ${healingDone} hitpoints <br/>`
+                log.innerHTML += logMessage;
+                scrollLog()
+            }
             currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
             let logMessage = `Player 2 healed himself for ${healingDone} hitpoints <br/>`
             log.innerHTML += logMessage;
