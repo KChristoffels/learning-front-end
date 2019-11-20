@@ -324,61 +324,112 @@ function generatePlayers(event) {
             doneDamage = Math.round(Math.random() * (player1.maxDamage - player1.minDamage)) + player1.minDamage;
 
             switch (true) {
-                case (player2.race = "elf")
+                case (player2.race == "elf"):
+                        if (player2.item == "boots") {
+                                    if (player2.dodgeChance == 2) {
+                                        log.innerHTML += "Player 2 has dodged your attack!"
+                                    } else {
+                                        hitTarget()
+                                    }
+                        } else {
+                                    if (player2.dodgeChance == 5) {
+                                        log.innerHTML += "Player 2 has dodged your attack!"
+                                    } else {
+                                        hitTarget()
+                                    }
+                        }
+                    break;
+                case (player2.race == "vampire"):
+                        if (player2.item == "boots") {
+                                    if (player2.dodgeChance == 2) {
+                                        log.innerHTML += "Player 2 has dodged your attack!"
+                                    } else {
+                                        hitTarget()
+                                    }
+                        } else {
+                                    if (player2.dodgeChance == 5) {
+                                        log.innerHTML += "Player 2 has dodged your attack!"
+                                    } else {
+                                        hitTarget()
+                                    }
+                        }
+                default:
+                        if (player2.item == "boots") {
+                                    if (player2.dodgeChance == 2) {
+                                        log.innerHTML += "Player 2 has dodged your attack!"
+                                    } else {
+                                        hitTarget()
+                                    }
+                        } else {
+                                    if (player2.dodgeChance == 5) {
+                                        log.innerHTML += "Player 2 has dodged your attack!"
+                                    } else {
+                                        hitTarget()
+                                    }
+                        }
             }
 
-            player2.currentHealth -= doneDamage;
-            healthBar2.value -= doneDamage;
-
-            if (player2.currentHealth <= 0) {
-                var el = document.createElement("div");
-                el.setAttribute("style","position:absolute;top:40%;left:38%;background-color:white;");
-
-                el.innerHTML = "Player 2 has been defeated"   
-                
-                document.body.appendChild(el);
             
-                setTimeout(function(){el.parentNode.removeChild(el);},3000);
 
-                setTimeout(resetGame, 4000);
+            function hitTarget () {
+                player2.currentHealth -= doneDamage;
+                healthBar2.value -= doneDamage;
+
+                if (player2.currentHealth <= 0) {
+                    var el = document.createElement("div");
+                    el.setAttribute("style","position:absolute;top:40%;left:38%;background-color:white;");
+    
+                    el.innerHTML = "Player 2 has been defeated"   
+                    
+                    document.body.appendChild(el);
+                
+                    setTimeout(function(){el.parentNode.removeChild(el);},3000);
+    
+                    setTimeout(resetGame, 4000);
+                } else {
+                    currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
+                    let logMessage = `Player 1 attacked player 2 for ${doneDamage} damage <br/>`
+                    log.innerHTML += logMessage;
+                    scrollLog()
+                }
             }
 
-            currentHealth2.innerHTML = "Currenthealth: " + player2.currentHealth;
-            let logMessage = `Player 1 attacked player 2 for ${doneDamage} damage <br/>`
-            log.innerHTML += logMessage;
-            scrollLog()   
+            
+
+            
+
         } else {
 
-            attack2.style.pointerEvents = "none";
-            heal2.style.pointerEvents = "none";
-            yield2.style.pointerEvents = "none";
+        attack2.style.pointerEvents = "none";
+        heal2.style.pointerEvents = "none";
+        yield2.style.pointerEvents = "none";
 
-            attack1.style.pointerEvents = "auto";
-            heal1.style.pointerEvents = "auto";
-            yield1.style.pointerEvents = "auto";
+        attack1.style.pointerEvents = "auto";
+        heal1.style.pointerEvents = "auto";
+        yield1.style.pointerEvents = "auto";
 
-            doneDamage = Math.round(Math.random() * (player2.maxDamage - player2.minDamage)) + player2.minDamage;
-            player1.currentHealth -= doneDamage;
-            healthBar1.value -= doneDamage;
+        doneDamage = Math.round(Math.random() * (player2.maxDamage - player2.minDamage)) + player2.minDamage;
+        player1.currentHealth -= doneDamage;
+        healthBar1.value -= doneDamage;
 
-            if (player1.currentHealth <= 0) {
-                var el = document.createElement("div");
-                el.setAttribute("style","position:absolute;top:40%;left:38%;background-color:white;");
+        if (player1.currentHealth <= 0) {
+            var el = document.createElement("div");
+            el.setAttribute("style","position:absolute;top:40%;left:38%;background-color:white;");
 
-                el.innerHTML = "Player 1 has been defeated"   
-                
-                document.body.appendChild(el);
+            el.innerHTML = "Player 1 has been defeated"   
             
-                setTimeout(function(){el.parentNode.removeChild(el);},3000);
+            document.body.appendChild(el);
+        
+            setTimeout(function(){el.parentNode.removeChild(el);},3000);
 
-                setTimeout(resetGame, 4000);
-            }
-
-            currentHealth1.innerHTML = "Currenthealth: " + player1.currentHealth;
-            let logMessage = `Player 2 attacked player 1 for ${doneDamage} damage <br/>`
-            log.innerHTML += logMessage;
-            scrollLog()               
+            setTimeout(resetGame, 4000);
         }
+
+        currentHealth1.innerHTML = "Currenthealth: " + player1.currentHealth;
+        let logMessage = `Player 2 attacked player 1 for ${doneDamage} damage <br/>`
+        log.innerHTML += logMessage;
+        scrollLog()               
+    }
 
         console.log(doneDamage);
     }
