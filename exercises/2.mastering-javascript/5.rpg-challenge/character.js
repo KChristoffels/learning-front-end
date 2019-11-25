@@ -20,7 +20,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 27;
                     this.dodgeChance = 6;
-                    this.critChance = Math.floor((Math.random() * 16) + 1); 
+                    this.critChance = 16; 
                     break;
                 case (item == `staff`): //staff increases healing +3
                     this.minDamage = 3;
@@ -170,7 +170,7 @@ function Person(name, item, race){
             this.maxHealth = 100;
     }
 
-    this.heal = function(){};
+    /*this.heal = function(){};*/
 
     /*this.damage = function(){
         let doneDamage = Math.round(Math.random() * 20) + 3;
@@ -221,11 +221,23 @@ let create = document.getElementById(`create1`);
 create.addEventListener(`click`, generatePlayers);
 
 function generatePlayers(event) {
+    
+
     let player1 = new Person(name1.value, items1.value, race1.value);
     let player2 = new Person(name2.value, items2.value, race2.value);
 
     let playerHeader1 = document.getElementById(`playerHeader1`);
     let playerHeader2 = document.getElementById(`playerHeader2`);
+
+    let raceDisplay1 = document.getElementById("raceDisplay1");
+    let raceDisplay2 = document.getElementById("raceDisplay2");
+    let itemDisplay1 = document.getElementById("itemDisplay1");
+    let itemDisplay2 = document.getElementById("itemDisplay2");
+
+    raceDisplay1.innerHTML = `Race: ${player1.race}`;
+    raceDisplay2.innerHTML = `Race: ${player2.race}`;
+    itemDisplay1.innerHTML = `Item: ${player1.item}`;
+    itemDisplay2.innerHTML = `Item: ${player2.item}`;
 
     playerHeader1.innerHTML = player1.name;
     playerHeader2.innerHTML = player2.name;
@@ -257,7 +269,7 @@ function generatePlayers(event) {
         yield2.style.pointerEvents = `none`;
         scrollLog()
     } else {
-        log.innerHTML += `Player 2 goes first <br/>`
+        log.innerHTML += `${player2.name} goes first <br/>`
         attack1.style.pointerEvents = `none`;
         heal1.style.pointerEvents = `none`;
         yield1.style.pointerEvents = `none`;
@@ -295,12 +307,26 @@ function generatePlayers(event) {
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:40%;left:38%;background-color:white;`);
+        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
 
         if(event.target.id == `yield1`) {
             el.innerHTML = `${player1.name} has forfaited the game. Resetting`;
+            Object.getOwnPropertyNames(player1).forEach(function (prop) {
+                delete player1[prop];
+            });
+
+            Object.getOwnPropertyNames(player2).forEach(function (prop) {
+                delete player2[prop];
+            });
         } else {
             el.innerHTML = `${player2.name} has forfeited the game. Resetting`;
+            Object.getOwnPropertyNames(player1).forEach(function (prop) {
+                delete player1[prop];
+            });
+
+            Object.getOwnPropertyNames(player2).forEach(function (prop) {
+                delete player2[prop];
+            });
         }        
         
         document.body.appendChild(el);
@@ -329,17 +355,21 @@ function generatePlayers(event) {
 
             doneDamage = Math.round(Math.random() * (player1.maxDamage - player1.minDamage)) + player1.minDamage;
 
+            
+
             switch (true) {
                 case (player2.race == `elf`):
                         if (player2.item == `boots`) {
                                     if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 2) {
-                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`
+                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`;
+                                        scrollLog()
                                     } else {
                                         hitTarget()
                                     }
                         } else {
-                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 5) {
-                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`
+                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 3) {
+                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`;
+                                        scrollLog()
                                     } else {
                                         hitTarget()
                                     }
@@ -347,56 +377,103 @@ function generatePlayers(event) {
                     break;
                 case (player2.race == `vampire`):
                         if (player2.item == `boots`) {
-                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 2) {
-                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`
+                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 5) {
+                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`;
+                                        scrollLog()
                                     } else {
                                         hitTarget()
                                     }
                         } else {
-                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 5) {
-                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`
+                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 6) {
+                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`;
+                                        scrollLog()
                                     } else {
                                         hitTarget()
                                     }
                         }
                 default:
                         if (player2.item == `boots`) {
-                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 2) {
-                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`
+                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 3) {
+                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`;
+                                        scrollLog()
                                     } else {
                                         hitTarget()
                                     }
                         } else {
-                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 5) {
-                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`
+                                    if ((Math.floor((Math.random() * player2.dodgeChance) + 1)) == 4) {
+                                        log.innerHTML += `${player2.name} has dodged your attack!<br/>`;
+                                        scrollLog()
                                     } else {
                                         hitTarget()
                                     }
                         }
             }
 
+            function didYouCrit () {
+                switch (true) {
+                    case (player1.item == "bow"):
+                        if (Math.floor((Math.random() * player1.critChance) + 1) == 5) {
+                            return true;                            
+                        } else {
+                            return false;
+                        }                    
+                    default:
+                        if (Math.floor((Math.random() * player1.critChance) + 1) == 8) {
+                            return true;                            
+                        } else {
+                            return false;
+                        }                    
+
+                }
+                      
+            }
             
 
             function hitTarget () {
-                player2.currentHealth -= doneDamage;
-                healthBar2.value -= doneDamage;
+                if (didYouCrit() == true) { // multiples damage by 1,25 if the player scored a critical hit
+                    doneDamage = Math.round(doneDamage * 1,25);
+                    player2.currentHealth -= doneDamage;
+                    healthBar2.value -= doneDamage;
+                } else {
+                    player2.currentHealth -= doneDamage;
+                    healthBar2.value -= doneDamage;
+                }
+                
 
                 if (player2.currentHealth <= 0) {
+                    player2.currentHealth = player2.maxHealth;
                     var el = document.createElement(`div`);
-                    el.setAttribute(`style`,`position:absolute;top:40%;left:38%;background-color:white;`);
+                    el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
     
-                    el.innerHTML = `${player2.name} has been defeated`   
+                    el.innerHTML = `${player2.name} has been defeated`;
+                    
+                    Object.getOwnPropertyNames(player1).forEach(function (prop) {
+                        delete player1[prop];
+                    });
+        
+                    Object.getOwnPropertyNames(player2).forEach(function (prop) {
+                        delete player2[prop];
+                    });
                     
                     document.body.appendChild(el);
                 
                     setTimeout(function(){el.parentNode.removeChild(el);},3000);
     
                     setTimeout(resetGame, 4000);
+
                 } else {
                     currentHealth2.innerHTML = `Currenthealth: ` + player2.currentHealth;
-                    let logMessage = `${player1.name} attacked ${player2.name} for ${doneDamage} damage <br/>`
-                    log.innerHTML += logMessage;
-                    scrollLog()
+
+                    if (didYouCrit() == true) {
+                        let logMessage = `A critical hit!  <br/> ${player1.name} attacked ${player2.name} for ${doneDamage} damage <br/>`
+                        log.innerHTML += logMessage;
+                        scrollLog()
+                    } else {
+                        let logMessage = `${player1.name} attacked ${player2.name} for ${doneDamage} damage <br/>`
+                        log.innerHTML += logMessage;
+                        scrollLog()
+                    }
+                    
                 }
             }
 
@@ -420,13 +497,15 @@ function generatePlayers(event) {
             case (player1.race == `elf`):
                     if (player1.item == `boots`) {
                                 if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 2) {
-                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`
+                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
+                                    scrollLog()
                                 } else {
                                     hitTarget2()
                                 }
                     } else {
-                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 5) {
-                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`
+                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 3) {
+                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
+                                    scrollLog()
                                 } else {
                                     hitTarget2()
                                 }
@@ -434,56 +513,106 @@ function generatePlayers(event) {
                 break;
             case (player1.race == `vampire`):
                     if (player1.item == `boots`) {
-                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 2) {
-                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`
+                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 5) {
+                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
+                                    scrollLog()
                                 } else {
                                     hitTarget2()
                                 }
                     } else {
-                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 5) {
-                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`
+                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 6) {
+                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
+                                    scrollLog()
                                 } else {
                                     hitTarget2()
                                 }
                     }
             default:
                     if (player1.item == `boots`) {
-                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 2) {
-                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`
+                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 3) {
+                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
+                                    scrollLog()
                                 } else {
                                     hitTarget2()
                                 }
                     } else {
-                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 5) {
-                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`
+                                if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 4) {
+                                    log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
+                                    scrollLog()
                                 } else {
                                     hitTarget2()
                                 }
                     }
         }
 
+        function didYouCrit2 () {
+            switch (true) {
+                case (player1.item == "bow"):
+                    if (Math.floor((Math.random() * player2.critChance) + 1) == 5) {
+                        return true;                            
+                    } else {
+                        return false;
+                    }                    
+                default:
+                    if (Math.floor((Math.random() * player2.critChance) + 1) == 8) {
+                        return true;                            
+                    } else {
+                        return false;
+                    }                    
+
+            }
+                  
+        }
+
         function hitTarget2 () {
 
-            player1.currentHealth -= doneDamage;
-            healthBar1.value -= doneDamage;
+            if (didYouCrit2() == true) { // multiples damage by 1,25 if the player scored a critical hit
+                doneDamage = Math.round(doneDamage * 1,25);
+                player1.currentHealth -= doneDamage;
+                healthBar1.value -= doneDamage;
+            } else {
+                player1.currentHealth -= doneDamage;
+                healthBar1.value -= doneDamage;
+            }
+            
     
             if (player1.currentHealth <= 0) {
+
+                player1.currentHealth = player1.maxHealth;
                 var el = document.createElement(`div`);
-                el.setAttribute(`style`,`position:absolute;top:40%;left:38%;background-color:white;`);
+                el.setAttribute(`style`,`position:absolute;top:10%;left:38%;background-color:white;`);
     
-                el.innerHTML = `${player1.name} has been defeated`   
+                el.innerHTML = `${player1.name} has been defeated`;
+                
+                Object.getOwnPropertyNames(player1).forEach(function (prop) {
+                    delete player1[prop];
+                });
+    
+                Object.getOwnPropertyNames(player2).forEach(function (prop) {
+                    delete player2[prop];
+                });
                 
                 document.body.appendChild(el);
             
                 setTimeout(function(){el.parentNode.removeChild(el);},3000);
     
                 setTimeout(resetGame, 4000);
-            }
-    
-            currentHealth1.innerHTML = `Currenthealth: ` + player1.currentHealth;
-            let logMessage = `${player2.name} attacked ${player1.name} for ${doneDamage} damage <br/>`
-            log.innerHTML += logMessage;
-            scrollLog()      
+
+            } else {
+
+                currentHealth1.innerHTML = `Currenthealth: ` + player1.currentHealth;
+
+                if (didYouCrit2() == true) {
+                    let logMessage = `A critical hit!  <br/> ${player2.name} attacked ${player1.name} for ${doneDamage} damage <br/>`
+                    log.innerHTML += logMessage;
+                    scrollLog()
+                } else {
+                    let logMessage = `${player2.name} attacked ${player1.name} for ${doneDamage} damage <br/>`
+                    log.innerHTML += logMessage;
+                    scrollLog()
+                }
+            }    
+                
 
         }
                 
@@ -565,6 +694,19 @@ function resetGame () {
     stats1.style.display = ``;
     stats2.style.display = ``;
     create.style.display = ``;
+
+    currentHealth1.innerHTML = `Currenthealth: `;
+    currentHealth2.innerHTML = `Currenthealth `;
+
+    attack1.style.pointerEvents = ``;
+    heal1.style.pointerEvents = ``;
+    yield1.style.pointerEvents = ``;
+
+    attack2.style.pointerEvents = ``;
+    heal2.style.pointerEvents = ``;
+    yield2.style.pointerEvents = ``;
+
+    
 }
 
 
