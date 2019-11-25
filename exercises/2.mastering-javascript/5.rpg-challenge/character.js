@@ -27,7 +27,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 33;
                     this.dodgeChance = 8;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance = 16;
                     break;
                 case (item == `sword`): //sword increases damage +3
                     this.minDamage = 6;
@@ -35,7 +35,7 @@ function Person(name, item, race){
                     this.maxDamage = 23;
                     this.maxHealing = 27;
                     this.dodgeChance = 8;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance = 16;
                     break;
                 case (item == `bow`): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 3;
@@ -43,7 +43,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 27;
                     this.dodgeChance = 8;
-                    this.critChance = Math.floor((Math.random() * 10) + 1);
+                    this.critChance = 10;
                     break;
                 default:
             }
@@ -58,7 +58,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 30;
                     this.dodgeChance = 4;
-                    this.critChance = Math.floor((Math.random() * 16) + 1); 
+                    this.critChance = 16; 
                     break;
                 case (item == `staff`): //staff increases healing +3
                     this.minDamage = 3;
@@ -66,7 +66,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 33;
                     this.dodgeChance = 6;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance = 16;
                     break;
                 case (item == `sword`): //sword increases damage +3
                     this.minDamage = 6;
@@ -74,7 +74,7 @@ function Person(name, item, race){
                     this.maxDamage = 23;
                     this.maxHealing = 30;
                     this.dodgeChance = 6;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance = 16;
                     break;
                 case (item == `bow`): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 3;
@@ -82,7 +82,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 30;
                     this.dodgeChance = 6;
-                    this.critChance = Math.floor((Math.random() * 10) + 1);
+                    this.critChance = 10;
                     break;
                 default:
             }
@@ -97,7 +97,7 @@ function Person(name, item, race){
                     this.maxDamage = 17;
                     this.maxHealing = 27;
                     this.dodgeChance = 6;
-                    this.critChance = Math.floor((Math.random() * 16) + 1); 
+                    this.critChance = 16; 
                     break;
                 case (item == `staff`): //staff increases healing +3
                     this.minDamage = 6;
@@ -105,7 +105,7 @@ function Person(name, item, race){
                     this.maxDamage = 17;
                     this.maxHealing = 27;
                     this.dodgeChance = 8;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance = 16;
                     break;
                 case (item == `sword`): //sword increases damage +3
                     this.minDamage = 9;
@@ -113,7 +113,7 @@ function Person(name, item, race){
                     this.maxDamage = 17;
                     this.maxHealing = 27;
                     this.dodgeChance = 8;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance =16;
                     break;
                 case (item == `bow`): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 6;
@@ -121,7 +121,7 @@ function Person(name, item, race){
                     this.maxDamage = 17;
                     this.maxHealing = 27;
                     this.dodgeChance = 8;
-                    this.critChance = Math.floor((Math.random() * 10) + 1);
+                    this.critChance = 10;
                     break;
                 default:
             }
@@ -136,7 +136,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 33;
                     this.dodgeChance = 10;
-                    this.critChance = Math.floor((Math.random() * 16) + 1); 
+                    this.critChance = 16; 
                     break;
                 case (item == `staff`): //staff increases healing +3
                     this.minDamage = 3;
@@ -144,7 +144,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 36;
                     this.dodgeChance = 12;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance = 16;
                     break;
                 case (item == `sword`): //sword increases damage +3
                     this.minDamage = 6;
@@ -152,7 +152,7 @@ function Person(name, item, race){
                     this.maxDamage = 23;
                     this.maxHealing = 33;
                     this.dodgeChance = 12;
-                    this.critChance = Math.floor((Math.random() * 16) + 1);
+                    this.critChance = 16;
                     break;
                 case (item == `bow`): //base crit-chance is 6,25 % / a bow increases it to 10 %
                     this.minDamage = 3;
@@ -160,7 +160,7 @@ function Person(name, item, race){
                     this.maxDamage = 20;
                     this.maxHealing = 33;
                     this.dodgeChance = 12;
-                    this.critChance = Math.floor((Math.random() * 10) + 1);
+                    this.critChance = 10;
                     break;
                 default:
             }
@@ -259,8 +259,6 @@ function generatePlayers(event) {
 
     let whoGoesFirst = Math.floor((Math.random() * 2) + 1);
 
-    console.log(whoGoesFirst);
-
     if (whoGoesFirst == 1) { // determines who goes first depending on a random number generator (either 1 or 2)
         log.innerHTML += `${player1.name} goes first <br/>`
         attack2.style.pointerEvents = `none`;
@@ -287,8 +285,9 @@ function generatePlayers(event) {
     console.log(player1.minDamage);
     /*console.log(player1.damage()); */
     
-    combatWindow1.style.display = ``;
-    combatWindow2.style.display = ``;
+    combatWindow1.style.display = `flex`;
+    combatWindow1.style.border = "1px solid black";
+    combatWindow2.style.display = `flex`;
     log.style.display = ``;
 
     stats1.style.display = `none`;
@@ -306,7 +305,7 @@ function generatePlayers(event) {
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:10%;left:36%;background-color:white;`);
+        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
 
         if(event.target.id == `yield1`) {
             el.innerHTML = `${player1.name} has forfaited the game. Resetting`;
@@ -441,7 +440,7 @@ function generatePlayers(event) {
                 if (player2.currentHealth <= 0) {
                     player2.currentHealth = player2.maxHealth;
                     var el = document.createElement(`div`);
-                    el.setAttribute(`style`,`position:absolute;top:10%;left:36%;background-color:white;`);
+                    el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
     
                     el.innerHTML = `${player2.name} has been defeated`;
                     
@@ -578,7 +577,7 @@ function generatePlayers(event) {
 
                 player1.currentHealth = player1.maxHealth;
                 var el = document.createElement(`div`);
-                el.setAttribute(`style`,`position:absolute;top:10%;left:36%;background-color:white;`);
+                el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
     
                 el.innerHTML = `${player1.name} has been defeated`;
                 

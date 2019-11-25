@@ -3,11 +3,17 @@
     width: 100%;
     justify-content: space-between;
 }
-.player2Window {
-   
+.combatWindow {
+    border: 1px solid black;
+    display: flex;
+    flex-flow: column;
 }
 .logContainer {
     display: flex;
     justify-content: center;
     margin-top: 40px;
+}
+.log {
+    height: 200px;
+    width: 200px;
 }
