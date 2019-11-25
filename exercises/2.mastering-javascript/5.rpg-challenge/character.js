@@ -5,8 +5,7 @@ function Person(name, item, race){
     
     this.name = name;
     this.race = race;
-    this.item = item;    
-
+    this.item = item;   
     
 
     switch (true) { //assigns statistics based on race and item carried
@@ -307,7 +306,7 @@ function generatePlayers(event) {
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+        el.setAttribute(`style`,`position:absolute;top:10%;left:36%;background-color:white;`);
 
         if(event.target.id == `yield1`) {
             el.innerHTML = `${player1.name} has forfaited the game. Resetting`;
@@ -354,7 +353,6 @@ function generatePlayers(event) {
             yield1.style.pointerEvents = `none`;
 
             doneDamage = Math.round(Math.random() * (player1.maxDamage - player1.minDamage)) + player1.minDamage;
-
             
 
             switch (true) {
@@ -443,7 +441,7 @@ function generatePlayers(event) {
                 if (player2.currentHealth <= 0) {
                     player2.currentHealth = player2.maxHealth;
                     var el = document.createElement(`div`);
-                    el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+                    el.setAttribute(`style`,`position:absolute;top:10%;left:36%;background-color:white;`);
     
                     el.innerHTML = `${player2.name} has been defeated`;
                     
@@ -580,7 +578,7 @@ function generatePlayers(event) {
 
                 player1.currentHealth = player1.maxHealth;
                 var el = document.createElement(`div`);
-                el.setAttribute(`style`,`position:absolute;top:10%;left:38%;background-color:white;`);
+                el.setAttribute(`style`,`position:absolute;top:10%;left:36%;background-color:white;`);
     
                 el.innerHTML = `${player1.name} has been defeated`;
                 
