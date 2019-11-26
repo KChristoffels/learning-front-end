@@ -1,5 +1,6 @@
 //Use this script to generate your character
-
+let portrait1 = document.getElementById("portrait1");
+let portrait2 = document.getElementById("portrait2");
 
 function Person(name, item, race){
     
@@ -12,6 +13,8 @@ function Person(name, item, race){
         case (race == `orc`): // orcs get extra health +20 but reduced healing -3
             this.currentHealth = 120;
             this.maxHealth = 120;
+           
+            
             switch (true) { 
                 case (item == `boots`): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 3;
@@ -51,6 +54,7 @@ function Person(name, item, race){
         case (race == `elf`): // elves get lower health but increased dodge-chance
             this.currentHealth = 90;
             this.maxHealth = 90;
+            
             switch (true) { 
                 case (item == `boots`): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 3;
@@ -90,6 +94,7 @@ function Person(name, item, race){
         case (race == `human`): // humans get higher min-damage and healing but lower max output
             this.currentHealth = 100;
             this.maxHealth = 100;
+            
             switch (true) { 
                 case (item == `boots`): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 6;
@@ -129,6 +134,7 @@ function Person(name, item, race){
         case (race == `vampire`): // vampires have higher healing and 10+ hp, but lower dodge 8 %
             this.currentHealth = 110;
             this.maxHealth = 110;
+           
             switch (true) { 
                 case (item == `boots`): //base dodge is 12,5 % / boots increase the percentage to 17 %  (allways +1 at the end to have math floor only generate the required possible outcomes)
                     this.minDamage = 3;
@@ -220,10 +226,23 @@ let create = document.getElementById(`create1`);
 create.addEventListener(`click`, generatePlayers);
 
 function generatePlayers(event) {
-    
+
+    if ((name1.value == "") && (name2.value == "")) {
+        var el = document.createElement(`div`);
+        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+        el.innerHTML = "Please give player 1 and 2 a name";
+
+        document.body.appendChild(el);
+       
+        setTimeout(function(){el.parentNode.removeChild(el);},3000);
+
+    } else {    
 
     let player1 = new Person(name1.value, items1.value, race1.value);
     let player2 = new Person(name2.value, items2.value, race2.value);
+
+    console.log(player1.name);
+    console.log(player2.name);
 
     let playerHeader1 = document.getElementById(`playerHeader1`);
     let playerHeader2 = document.getElementById(`playerHeader2`);
@@ -257,6 +276,41 @@ function generatePlayers(event) {
     yield1.addEventListener(`click`, forfaitGame);
     yield2.addEventListener(`click`, forfaitGame);
 
+    
+    switch (player1.race) {
+        case "human":
+            portrait1.src = "resources/200px-Minsc.jpg";
+            break;
+        case "orc":
+            portrait1.src = "resources/h2kpe8vpnxj4kfnxctc1_400x400.gif.png";
+            break;
+        case "elf":
+            portrait1.src = "resources/elrond_dealwithit.jpg";
+            break;
+        case "vampire":
+            portrait1.src = "resources/niccagevampireskissteeth.jpg";
+            break;
+        default:
+    }
+       
+    switch (player2.race) {
+        case "human":
+            portrait2.src = "resources/images.jpeg";
+            break;
+        case "orc":
+            portrait2.src = "resources/dd6pfz0-f33e7bfc-2b19-44e0-85fc-3a65d68fb7b3.png";
+            break;
+        case "elf":
+            portrait2.src = "resources/elrond_dealwithit.jpg";
+            break;
+        case "vampire":
+            portrait2.src = "resources/0f4402cb267972c1513878d1e8c0b310.jpg";
+            break;
+        default:
+    }      
+
+   
+
     let whoGoesFirst = Math.floor((Math.random() * 2) + 1);
 
     if (whoGoesFirst == 1) { // determines who goes first depending on a random number generator (either 1 or 2)
@@ -282,7 +336,7 @@ function generatePlayers(event) {
     healthBar2.value = player2.currentHealth;
     healthBar2.max = player2.currentHealth;
     
-    console.log(player1.minDamage);
+    
     /*console.log(player1.damage()); */
     
     combatWindow1.style.display = `flex`;
@@ -309,6 +363,7 @@ function generatePlayers(event) {
 
         if(event.target.id == `yield1`) {
             el.innerHTML = `${player1.name} has forfaited the game. Resetting`;
+            portrait1.src = "resources/Dan_Kennedy_Chicken.jpg";
             Object.getOwnPropertyNames(player1).forEach(function (prop) {
                 delete player1[prop];
             });
@@ -318,6 +373,7 @@ function generatePlayers(event) {
             });
         } else {
             el.innerHTML = `${player2.name} has forfeited the game. Resetting`;
+            portrait2.src = "resources/Dan_Kennedy_Chicken.jpg";
             Object.getOwnPropertyNames(player1).forEach(function (prop) {
                 delete player1[prop];
             });
@@ -328,10 +384,17 @@ function generatePlayers(event) {
         }        
         
         document.body.appendChild(el);
+
+        
        
         setTimeout(function(){el.parentNode.removeChild(el);},3000);
 
         setTimeout(resetGame, 4000);
+
+        setTimeout(function(){portrait1.src = ""; portrait2.src = "";}, 4100);
+
+        
+        
     }
 
     function scrollLog () {
@@ -443,6 +506,8 @@ function generatePlayers(event) {
                     el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
     
                     el.innerHTML = `${player2.name} has been defeated`;
+                    portrait1.src = "resources/trolldad.png";
+                    portrait2.src = "resources/71bQXvSriRL._SY355_.png.jpeg";
                     
                     Object.getOwnPropertyNames(player1).forEach(function (prop) {
                         delete player1[prop];
@@ -454,9 +519,11 @@ function generatePlayers(event) {
                     
                     document.body.appendChild(el);
                 
-                    setTimeout(function(){el.parentNode.removeChild(el);},3000);
+                    setTimeout(function(){el.parentNode.removeChild(el);},3000);                    
     
                     setTimeout(resetGame, 4000);
+
+                    setTimeout(function () {portrait1.src = ""; portrait2.src = "";}, 4100);
 
                 } else {
                     currentHealth2.innerHTML = `Currenthealth: ` + player2.currentHealth;
@@ -497,6 +564,7 @@ function generatePlayers(event) {
                                     log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
                                     scrollLog()
                                 } else {
+
                                     hitTarget2()
                                 }
                     } else {
@@ -513,15 +581,20 @@ function generatePlayers(event) {
                                 if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 5) {
                                     log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
                                     scrollLog()
+                                    console.log("test");
                                 } else {
+                                    console.log("test");
                                     hitTarget2()
                                 }
                     } else {
                                 if ((Math.floor((Math.random() * player1.dodgeChance) + 1)) == 6) {
                                     log.innerHTML += `${player1.name} has dodged your attack!<br/>`;
                                     scrollLog()
+                                    console.log("test");
                                 } else {
+                                    console.log("test");
                                     hitTarget2()
+
                                 }
                     }
             default:
@@ -544,7 +617,7 @@ function generatePlayers(event) {
 
         function didYouCrit2 () {
             switch (true) {
-                case (player1.item == "bow"):
+                case (player2.item == "bow"):
                     if (Math.floor((Math.random() * player2.critChance) + 1) == 5) {
                         return true;                            
                     } else {
@@ -567,9 +640,12 @@ function generatePlayers(event) {
                 doneDamage = Math.round(doneDamage * 1,25);
                 player1.currentHealth -= doneDamage;
                 healthBar1.value -= doneDamage;
+                console.log("test");
             } else {
                 player1.currentHealth -= doneDamage;
+                console.log(player1.currentHealth);
                 healthBar1.value -= doneDamage;
+                console.log("test");
             }
             
     
@@ -580,6 +656,9 @@ function generatePlayers(event) {
                 el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
     
                 el.innerHTML = `${player1.name} has been defeated`;
+
+                portrait2.src = "resources/trolldad.png";
+                portrait1.src = "resources/71bQXvSriRL._SY355_.png.jpeg";
                 
                 Object.getOwnPropertyNames(player1).forEach(function (prop) {
                     delete player1[prop];
@@ -591,10 +670,12 @@ function generatePlayers(event) {
                 
                 document.body.appendChild(el);
             
-                setTimeout(function(){el.parentNode.removeChild(el);},3000);
+                setTimeout(function(){el.parentNode.removeChild(el);},3000);                
     
                 setTimeout(resetGame, 4000);
 
+                setTimeout(function () {portrait1.src = ""; portrait2.src = "";}, 4100);
+                
             } else {
 
                 currentHealth1.innerHTML = `Currenthealth: ` + player1.currentHealth;
@@ -679,7 +760,11 @@ function generatePlayers(event) {
         
     }
 
+    }
 }
+    
+
+    
 
 function resetGame () {
     combatWindow1.style.display = `none`;
@@ -702,6 +787,9 @@ function resetGame () {
     attack2.style.pointerEvents = ``;
     heal2.style.pointerEvents = ``;
     yield2.style.pointerEvents = ``;
+
+    playerHeader1.innerHTML = "player 1";
+    playerHeader2.innerHTML = "player 2";
 
     
 }
