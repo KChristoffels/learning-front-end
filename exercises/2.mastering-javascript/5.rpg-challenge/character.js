@@ -228,9 +228,9 @@ function generatePlayers(event) {
 
     comeGetSome.play();
 
-    if ((name1.value == "") && (name2.value == "")) {
+    if ((name1.value == "") || (name2.value == "")) {
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+        el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
         el.innerHTML = "Please give player 1 and 2 a name";
 
         document.body.appendChild(el);
@@ -349,7 +349,7 @@ function generatePlayers(event) {
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+        el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
         chicken.play()
         if(event.target.id == `yield1`) {
             el.innerHTML = `${player1.name} has forfaited the game. Resetting`;
@@ -523,7 +523,7 @@ function generatePlayers(event) {
         
                         player2.currentHealth = player2.maxHealth;
                         var el = document.createElement(`div`);
-                        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+                        el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
             
                         el.innerHTML = `${player2.name} has been defeated`;
         
@@ -569,7 +569,7 @@ function generatePlayers(event) {
         
                         player2.currentHealth = player2.maxHealth;
                         var el = document.createElement(`div`);
-                        el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+                        el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
             
                         el.innerHTML = `${player2.name} has been defeated`;
         
@@ -733,7 +733,7 @@ function generatePlayers(event) {
     
                     player1.currentHealth = player1.maxHealth;
                     var el = document.createElement(`div`);
-                    el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+                    el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
         
                     el.innerHTML = `${player1.name} has been defeated`;
     
@@ -776,7 +776,7 @@ function generatePlayers(event) {
     
                     player1.currentHealth = player1.maxHealth;
                     var el = document.createElement(`div`);
-                    el.setAttribute(`style`,`position:absolute;top:10%;left:40%;background-color:white;`);
+                    el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:60px;color:black`);
         
                     el.innerHTML = `${player1.name} has been defeated`;
     

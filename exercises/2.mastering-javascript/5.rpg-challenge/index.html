@@ -18,8 +18,8 @@
    
         <div id="player1Window" class="player1Window">
 
-            <h1 id="playerHeader1">Player 1</h1>
-            <div id="stats1">
+            <h1 id="playerHeader1" class="header">Player 1</h1>
+            <div id="stats1" class="stats">
                 <input id="name1">
                 <select id="items1">
                     <option>boots</option>
@@ -35,26 +35,28 @@
                 </select>
             </div>
             <div id="combatWindow1" class="combatWindow">
-                <img id="portrait1">
+                <div class="justifier"><div class="image"><img id="portrait1"></div></div>
                 <div id="raceDisplay1"></div>
                 <div id="itemDisplay1"></div>
                 <div id="healthData1"><div id="currentHealth1">Currenthealth: </div> <progress id="health1" value="100" max="100"></progress> <div id="maxHealth1">Maxhealth: 100</div></div>            
-                <div id="moves1">
-                    <button id="attack1">attack</button>
-                    <button id="heal1">heal</button>
-                    <button id="yield1">yield</button>
+                <div id="moves1" class="moves1">
+                    <button id="attack1" class="button">attack</button>
+                    <button id="heal1" class="button">heal</button>
+                    <button id="yield1" class="button">yield</button>
                 </div>
             </div>
 
             
         </div>
 
+
+        <div id="logContainer" class="logContainer"><div id="log" class="log">Log:<br/></div></div> 
         
 
         <div id="player2Window" class="player2Window">
 
-            <h1 id="playerHeader2">Player 2</h1>
-            <div id="stats2">
+            <h1 id="playerHeader2" class="header">Player 2</h1>
+            <div id="stats2" class="stats">
                     <input id="name2">
                     <select id="items2">
                         <option>boots</option>
@@ -70,14 +72,14 @@
                     </select>
             </div>
             <div id="combatWindow2" class="combatWindow">
-                <img id="portrait2">
+                <div class="justifier"><div class="image"><img id="portrait2"></div></div>
                 <div id="raceDisplay2"></div>
                 <div id="itemDisplay2"></div>
                 <div id="healthData2"><div id="currentHealth2">Currenthealth: </div> <progress id="health2" value="100" max="100"></progress> <div id="maxHealth2">Maxhealth: 100</div></div> 
-                <div id="moves2">
-                        <button id="attack2">attack</button>
-                        <button id="heal2">heal</button>
-                        <button id="yield2">yield</button>   
+                <div id="moves2" class="moves2">
+                        <button id="attack2" class="button">attack</button>
+                        <button id="heal2" class="button">heal</button>
+                        <button id="yield2" class="button">yield</button>   
                 </div>
             </div>
 
@@ -85,9 +87,9 @@
     
     </div>
 
-    <button id="create1">Create players</button>
+    <div class="createContainer"><button id="create1" class="create">Create players</button></div>
 
-    <div id="logContainer" class="logContainer"><div id="log" class="log">Log:<br/></div></div>
+    
     
     
 

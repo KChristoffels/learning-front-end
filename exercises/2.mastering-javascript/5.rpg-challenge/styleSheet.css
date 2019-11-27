@@ -1,29 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+body {
+    background-image: url("resources/1024px-BG_Castle.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 850px;
+    width: 1220px;
+}
+.moves1, .moves2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    height: 140px;
+    width: 140px;
+}
+
+.button {
+    color: #20bf6b;
+    text-transform: uppercase;
+    background: #ffffff;
+    padding: 20px;
+    border: 4px solid #20bf6b;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+.button:hover {    
+    color: #494949;
+    border-radius: 50px;
+    border-color: #494949;
+    transition: all 0.3s ease 0s;
+}
 .playingField {
     display: flex;
-    width: 100%;
+    width: 1220px;
     justify-content: space-between;
+    padding: 20px;
+}
+.create  {
+    padding: 20px;
+    margin-left: 20px;
+    background-color: red;   
+    border-color: red; 
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: grey;
+    font-size: 80px;
 }
 .combatWindow {
     border: 1px solid black;
     display: flex;
     flex-flow: column;
-    height: 300px;
-    width: 200px;
+    align-content: space-between;
+    height: 350px;
+    width: 300px;
+    background-color: #2e2a2a;
+    margin: 40px;
+    padding: 10px;
+    color: white;
+}
+.combatWindow > div {
+    margin: 5px;
 }
 .logContainer {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    justify-content: flex-end;
     margin-top: 40px;
+    
 }
 .log {
     height: 200px;
     width: 300px;
+    background-color: lightblue;
+    border: 1px dotted black;
+    padding: 5px;
+    top: 50%;
 }
 #portrait1 {
-    height: 170px;
-    width: 170px;
+    height: 140px;
+    width: 140px;
 }
 #portrait2 {
-    height: 170px;
-    width: 170px;
+    height: 140px;
+    width: 140px;
+}
+.justifier {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 300px;
+}
+.stats > * {
+    padding: 20px;
+    font-size: 18px;
+}
+.createContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
 }
