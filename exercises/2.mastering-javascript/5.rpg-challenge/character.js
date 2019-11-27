@@ -226,7 +226,7 @@ create.addEventListener(`click`, generatePlayers);
 
 function generatePlayers(event) {
 
-    comeGetSome.play();
+    
 
     if ((name1.value == "") || (name2.value == "")) {
         var el = document.createElement(`div`);
@@ -237,7 +237,9 @@ function generatePlayers(event) {
        
         setTimeout(function(){el.parentNode.removeChild(el);},3000);
 
-    } else {    
+    } else { 
+        
+    comeGetSome.play();
 
     let player1 = new Person(name1.value, items1.value, race1.value);
     let player2 = new Person(name2.value, items2.value, race2.value);
@@ -349,10 +351,10 @@ function generatePlayers(event) {
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
+        el.setAttribute(`style`,`position:absolute;top:15%;left:33%;background-color:white;font-size:30px;color:black`);
         chicken.play()
         if(event.target.id == `yield1`) {
-            el.innerHTML = `${player1.name} has forfaited the game. Resetting`;
+            el.innerHTML = `${player1.name} has forfeited the game. Resetting`;
             portrait1.src = "resources/Dan_Kennedy_Chicken.jpg";
             Object.getOwnPropertyNames(player1).forEach(function (prop) {
                 delete player1[prop];
@@ -510,7 +512,7 @@ function generatePlayers(event) {
                 
                 if (didYouCrit() == true) { // multiples damage by 1,25 if the player scored a critical hit
                     criticalH.play()
-                    doneDamage = Math.round(doneDamage * 1,25);
+                    doneDamage = Math.round(doneDamage * 2);
                     player2.currentHealth -= doneDamage;
                     healthBar2.value -= doneDamage;
                     console.log("test");
@@ -523,7 +525,7 @@ function generatePlayers(event) {
         
                         player2.currentHealth = player2.maxHealth;
                         var el = document.createElement(`div`);
-                        el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
+                        el.setAttribute(`style`,`position:absolute;top:15%;left:33%;background-color:white;font-size:30px;color:black`);
             
                         el.innerHTML = `${player2.name} has been defeated`;
         
@@ -566,10 +568,12 @@ function generatePlayers(event) {
 
                     if (player2.currentHealth <= 0) {
                         gameOver.play()
+
+                        currentHealth2.innerHTML = `Currenthealth: 0`;
         
                         player2.currentHealth = player2.maxHealth;
                         var el = document.createElement(`div`);
-                        el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
+                        el.setAttribute(`style`,`position:absolute;top:15%;left:33%;background-color:white;font-size:30px;color:black`);
             
                         el.innerHTML = `${player2.name} has been defeated`;
         
@@ -722,7 +726,7 @@ function generatePlayers(event) {
             if (didYouCrit2() == true) { // multiples damage by 1,25 if the player scored a critical hit
                 criticalH.play()
                 console.log("test");
-                doneDamage = Math.round(doneDamage * 1,25);
+                doneDamage = Math.round(doneDamage * 2);
                 player1.currentHealth -= doneDamage;
                 healthBar1.value -= doneDamage;    
 
@@ -733,7 +737,7 @@ function generatePlayers(event) {
     
                     player1.currentHealth = player1.maxHealth;
                     var el = document.createElement(`div`);
-                    el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:30px;color:black`);
+                    el.setAttribute(`style`,`position:absolute;top:15%;left:33%;background-color:white;font-size:30px;color:black`);
         
                     el.innerHTML = `${player1.name} has been defeated`;
     
@@ -773,10 +777,12 @@ function generatePlayers(event) {
 
                 if (player1.currentHealth <= 0) {
                     gameOver.play()
+
+                    currentHealth1.innerHTML = `Currenthealth: 0`;
     
                     player1.currentHealth = player1.maxHealth;
                     var el = document.createElement(`div`);
-                    el.setAttribute(`style`,`position:absolute;top:20%;left:33%;background-color:white;font-size:60px;color:black`);
+                    el.setAttribute(`style`,`position:absolute;top:15%;left:33%;background-color:white;font-size:60px;color:black`);
         
                     el.innerHTML = `${player1.name} has been defeated`;
     
