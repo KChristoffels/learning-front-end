@@ -26,6 +26,10 @@ function Person(name, item, race){
     this.maxHealing = 30;
     this.dodgeChance = 8;
     this.critChance = 16;
+    this.attack = function (target) {
+        let damage = 20;
+        target.currentHealth -= damage;
+    }
     
 
     switch (true) { //assigns statistics based on race and item carried
@@ -183,6 +187,8 @@ function generatePlayers(event) {
     let player1 = new Person(name1.value, items1.value, race1.value);
     let player2 = new Person(name2.value, items2.value, race2.value);
 
+    
+
     let playerHeader1 = document.getElementById(`playerHeader1`);
     let playerHeader2 = document.getElementById(`playerHeader2`);
 
@@ -337,6 +343,8 @@ function generatePlayers(event) {
         let otherHealthbar;
         let otherHealth;
 
+        
+
         if (event.target.id == `attack1`) {
             currentPlayer = player1;
             otherPlayer = player2;
@@ -408,9 +416,9 @@ function generatePlayers(event) {
                 }
                 
             } else {
+                    thisHurts.play()
                     otherPlayer.currentHealth -= doneDamage;
-                    otherHealthbar.value -= doneDamage;
-                    
+                    otherHealthbar.value -= doneDamage;                    
 
                 if (otherPlayer.currentHealth <= 0) {
                     otherHealth.innerHTML = `Current health: 0`;
@@ -437,12 +445,13 @@ function generatePlayers(event) {
 
             el.innerHTML = `${otherPlayer.name} has been defeated`;
             
-            if (currentPlayer == "player1") {
+            if (currentPlayer == player1) {
                 portrait1.src = "resources/trolldad.png";
                 portrait2.src = "resources/71bQXvSriRL._SY355_.png.jpeg";
             } else {
                 portrait2.src = "resources/trolldad.png";
                 portrait1.src = "resources/71bQXvSriRL._SY355_.png.jpeg";
+                
             }
             
             
