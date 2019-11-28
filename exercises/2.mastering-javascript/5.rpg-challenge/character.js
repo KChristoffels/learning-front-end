@@ -381,8 +381,10 @@ function generatePlayers(event) {
         log.innerHTML += `${otherPlayer.name} has dodged your attack!<br/>`;
         scrollLog()
         dodge.play()
+        console.log("test")
         } else {    
             hitTarget()
+            console.log("test1");
         }
 
         function didYouCrit () {                
@@ -416,7 +418,7 @@ function generatePlayers(event) {
                 }
                 
             } else {
-                    thisHurts.play()
+                    
                     otherPlayer.currentHealth -= doneDamage;
                     otherHealthbar.value -= doneDamage;                    
 
@@ -424,7 +426,8 @@ function generatePlayers(event) {
                     otherHealth.innerHTML = `Current health: 0`;
                     someoneDied()  
 
-                } else {                    
+                } else { 
+                    thisHurts.play()                   
                     otherHealth.innerHTML = `Current health: ` + otherPlayer.currentHealth;
                     let logMessage = `${currentPlayer.name} attacked ${otherPlayer.name} for ${doneDamage} damage <br/>`
                     log.innerHTML += logMessage;
