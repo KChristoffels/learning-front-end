@@ -10,6 +10,8 @@ let chicken = new Audio('resources/chicken.mp3');
 let dodge = new Audio('resources/dodge.mp3');
 let criticalH = new Audio('resources/MLG Gun Shot Sound Effect.mp3');
 
+let playerContainer = [];
+
 
 function Person(name, item, race){
     
@@ -184,7 +186,8 @@ function generatePlayers(event) {
     let player1 = new Person(name1.value, items1.value, race1.value);
     let player2 = new Person(name2.value, items2.value, race2.value);
 
-    
+    playerContainer.push(player1);
+    playerContainer.push(player2);
 
     let playerHeader1 = document.getElementById(`playerHeader1`);
     let playerHeader2 = document.getElementById(`playerHeader2`);
@@ -295,7 +298,7 @@ function generatePlayers(event) {
         el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
         chicken.play()
         if(event.target.id == `yield1`) {
-            el.innerHTML = `${player1.name} has forfeited the game. Resetting`;
+            el.innerHTML = `${playerContainer[0].name} has forfeited the game. Resetting`;
             portrait1.src = "resources/Dan_Kennedy_Chicken.jpg";
             Object.getOwnPropertyNames(player1).forEach(function (prop) {
                 delete player1[prop];
@@ -307,7 +310,7 @@ function generatePlayers(event) {
             document.body.appendChild(el);
             
         } else {
-            el.innerHTML = `${player2.name} has forfeited the game. Resetting`;
+            el.innerHTML = `${playerContainer[1].name} has forfeited the game. Resetting`;
             portrait2.src = "resources/Dan_Kennedy_Chicken.jpg";
             Object.getOwnPropertyNames(player1).forEach(function (prop) {
                 delete player1[prop];
