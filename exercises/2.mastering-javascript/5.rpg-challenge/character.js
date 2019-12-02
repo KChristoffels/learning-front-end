@@ -173,7 +173,7 @@ function generatePlayers(event) {
 
     if ((name1.value == "") || (name2.value == "")) {
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:20%;left:30%;background-color:white;font-size:30px;color:black`);
+        el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
         el.innerHTML = "Please give player 1 and 2 a name";
 
         document.body.appendChild(el);
@@ -295,7 +295,7 @@ function generatePlayers(event) {
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:15%;left:30%;background-color:white;font-size:30px;color:black`);
+        el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
         chicken.play()
         if(event.target.id == `yield1`) {
             el.innerHTML = `${player1.name} has forfeited the game. Resetting`;
@@ -444,7 +444,7 @@ function generatePlayers(event) {
 
             otherPlayer.currentHealth = otherPlayer.maxHealth;
             var el = document.createElement(`div`);
-            el.setAttribute(`style`,`position:absolute;top:15%;left:30%;background-color:white;font-size:30px;color:black`);
+            el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
 
             el.innerHTML = `${otherPlayer.name} has been defeated`;
             
