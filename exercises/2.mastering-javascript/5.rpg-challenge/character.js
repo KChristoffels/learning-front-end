@@ -10,7 +10,6 @@ let chicken = new Audio('resources/chicken.mp3');
 let dodge = new Audio('resources/dodge.mp3');
 let criticalH = new Audio('resources/MLG Gun Shot Sound Effect.mp3');
 
-let playerContainer = [];
 
 function Person(name, item, race){
     
@@ -171,7 +170,6 @@ let create = document.getElementById(`create1`);
 create.addEventListener(`click`, generatePlayers);
 
 function generatePlayers(event) {
-      
 
     if ((name1.value == "") || (name2.value == "")) {
         var el = document.createElement(`div`);
@@ -180,7 +178,7 @@ function generatePlayers(event) {
 
         document.body.appendChild(el);
        
-        setTimeout(function(){el.parentNode.removeChild(el); delete el},3000);
+        setTimeout(function(){el.parentNode.removeChild(el);},3000);
 
     } else { 
         
@@ -189,8 +187,7 @@ function generatePlayers(event) {
     let player1 = new Person(name1.value, items1.value, race1.value);
     let player2 = new Person(name2.value, items2.value, race2.value);
 
-    playerContainer.push(player1);
-    playerContainer.push(player2);
+    
 
     let playerHeader1 = document.getElementById(`playerHeader1`);
     let playerHeader2 = document.getElementById(`playerHeader2`);
@@ -298,10 +295,10 @@ function generatePlayers(event) {
     function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:12%;left:35%;background-color:white;font-size:30px;color:black`);
+        el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
         chicken.play()
         if(event.target.id == `yield1`) {
-            el.innerHTML = `${playerContainer[0].name} has forfeited the game. Resetting`;
+            el.innerHTML = `${player1.name} has forfeited the game. Resetting`;
             portrait1.src = "resources/Dan_Kennedy_Chicken.jpg";
             Object.getOwnPropertyNames(player1).forEach(function (prop) {
                 delete player1[prop];
@@ -310,11 +307,10 @@ function generatePlayers(event) {
             Object.getOwnPropertyNames(player2).forEach(function (prop) {
                 delete player2[prop];
             });
-            playerContainer.length = 0;
             document.body.appendChild(el);
             
         } else {
-            el.innerHTML = `${playerContainer[1].name} has forfeited the game. Resetting`;
+            el.innerHTML = `${player2.name} has forfeited the game. Resetting`;
             portrait2.src = "resources/Dan_Kennedy_Chicken.jpg";
             Object.getOwnPropertyNames(player1).forEach(function (prop) {
                 delete player1[prop];
@@ -323,12 +319,11 @@ function generatePlayers(event) {
             Object.getOwnPropertyNames(player2).forEach(function (prop) {
                 delete player2[prop];
             });
-            playerContainer.length = 0;
             document.body.appendChild(el);
             
         }
 
-        setTimeout(function(){el.parentNode.removeChild(el); delete el},3000);
+        setTimeout(function(){el.parentNode.removeChild(el);},3000);
 
         setTimeout(resetGame, 4000);
 
@@ -355,6 +350,8 @@ function generatePlayers(event) {
             otherPlayer = player2;
             otherHealthbar = healthBar2;
             otherHealth = currentHealth2;
+
+            
 
             attack2.style.pointerEvents = `auto`;
             heal2.style.pointerEvents = `auto`;
@@ -447,7 +444,7 @@ function generatePlayers(event) {
 
             otherPlayer.currentHealth = otherPlayer.maxHealth;
             var el = document.createElement(`div`);
-            el.setAttribute(`style`,`position:absolute;top:12%;left:40%;background-color:white;font-size:30px;color:black`);
+            el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
 
             el.innerHTML = `${otherPlayer.name} has been defeated`;
             
@@ -471,7 +468,7 @@ function generatePlayers(event) {
             
             document.body.appendChild(el);
         
-            setTimeout(function(){el.parentNode.removeChild(el); delete el},3000);                
+            setTimeout(function(){el.parentNode.removeChild(el);},3000);                
 
             setTimeout(resetGame, 4000);
 
@@ -563,8 +560,6 @@ function resetGame () {
 
     playerHeader1.innerHTML = "player 1";
     playerHeader2.innerHTML = "player 2";
-
-
 
     
 }
