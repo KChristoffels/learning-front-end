@@ -1,4 +1,3 @@
-//Use this script to generate your character
 let portrait1 = document.getElementById("portrait1");
 let portrait2 = document.getElementById("portrait2");
 
@@ -9,8 +8,6 @@ let gameOver = new Audio('resources/gameOver.mp3');
 let chicken = new Audio('resources/chicken.mp3');
 let dodge = new Audio('resources/dodge.mp3');
 let criticalH = new Audio('resources/MLG Gun Shot Sound Effect.mp3');
-
-let playerContainer = [];
 
 function Person(name, item, race){
     
@@ -27,10 +24,7 @@ function Person(name, item, race){
     this.maxHealing = 30;
     this.dodgeChance = 8;
     this.critChance = 16;
-    this.attack = function (target) {
-        let damage = 20;
-        target.currentHealth -= damage;
-    }
+    
     
 
     switch (true) { //assigns statistics based on race and item carried
@@ -135,7 +129,6 @@ function Person(name, item, race){
     };
 }
 
-
 let stats1 = document.getElementById(`stats1`);
 let stats2 = document.getElementById(`stats2`);
 
@@ -170,10 +163,12 @@ log.style.display = `none`;
 let create = document.getElementById(`create1`);
 create.addEventListener(`click`, generatePlayers);
 
+let playerContainer = [];
+
 function generatePlayers(event) {
       
 
-    if ((name1.value == "") || (name2.value == "")) {
+   /* if ((name1.value == "") || (name2.value == "")) {
         var el = document.createElement(`div`);
         el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
         el.innerHTML = "Please give player 1 and 2 a name";
@@ -184,7 +179,7 @@ function generatePlayers(event) {
 
     } else { 
         
-    comeGetSome.play();
+    comeGetSome.play();*/
 
     let player1 = new Person(name1.value, items1.value, race1.value);
     let player2 = new Person(name2.value, items2.value, race2.value);
@@ -192,7 +187,10 @@ function generatePlayers(event) {
     playerContainer.push(player1);
     playerContainer.push(player2);
 
-    let playerHeader1 = document.getElementById(`playerHeader1`);
+    console.log(player1.name);
+    console.dir(player2);
+
+    /*let playerHeader1 = document.getElementById(`playerHeader1`);
     let playerHeader2 = document.getElementById(`playerHeader2`);
 
     let raceDisplay1 = document.getElementById("raceDisplay1");
@@ -218,11 +216,11 @@ function generatePlayers(event) {
     let heal2 = document.getElementById(`heal2`);
     heal2.addEventListener(`click`, healSelf);
 
-    let yield1 = document.getElementById(`yield1`);
+    */let yield1 = document.getElementById(`yield1`);
     let yield2 = document.getElementById(`yield2`);
 
     yield1.addEventListener(`click`, forfaitGame);
-    yield2.addEventListener(`click`, forfaitGame);
+    yield2.addEventListener(`click`, forfaitGame);/*
     
     switch (player1.race) {
         case "human":
@@ -280,14 +278,14 @@ function generatePlayers(event) {
     healthBar2.value = player2.currentHealth;
     healthBar2.max = player2.currentHealth;
     
-    combatWindow1.style.display = `flex`;
+    */combatWindow1.style.display = `flex`;
     combatWindow1.style.border = "1px solid black";
     combatWindow2.style.display = `flex`;
-    log.style.display = ``;
+    log.style.display = ``;/*
 
-    stats1.style.display = `none`;
+    */stats1.style.display = `none`;
     stats2.style.display = `none`;
-    create.style.display = `none`;
+    create.style.display = `none`;/*
 
     currentHealth1.innerHTML = `Currenthealth: ` + player1.currentHealth;
     maxHealth1.innerHTML = `Maxhealth ` + player1.maxHealth;
@@ -295,10 +293,10 @@ function generatePlayers(event) {
     currentHealth2.innerHTML = `Currenthealth: ` + player2.currentHealth;
     maxHealth2.innerHTML = `Maxhealth ` + player2.maxHealth;
 
-    function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
+    */function forfaitGame(event) { // gets the id from the clicked yield button and tells who forfeited
         
         var el = document.createElement(`div`);
-        el.setAttribute(`style`,`position:absolute;top:12%;left:35%;background-color:white;font-size:30px;color:black`);
+        el.setAttribute(`style`,`position:absolute;top:12%;left:30%;background-color:white;font-size:30px;color:black`);
         chicken.play()
         if(event.target.id == `yield1`) {
             el.innerHTML = `${playerContainer[0].name} has forfeited the game. Resetting`;
@@ -330,11 +328,11 @@ function generatePlayers(event) {
 
         setTimeout(function(){el.parentNode.removeChild(el); delete el},3000);
 
-        setTimeout(resetGame, 4000);
+        setTimeout(resetGame, 6000);
 
         setTimeout(function(){portrait1.src = ""; portrait2.src = "";}, 4100);
         
-    }
+    }/*
 
     function scrollLog () {
         log.scrollTop = log.scrollHeight - log.clientHeight; // assures the log will scroll down to the new content
@@ -539,7 +537,7 @@ function generatePlayers(event) {
     
 }
 
-function resetGame () {
+*/function resetGame () {
     combatWindow1.style.display = `none`;
     combatWindow2.style.display = `none`;
     log.style.display = `none`;
@@ -567,7 +565,7 @@ function resetGame () {
 
 
     
-}
-
+}/*
+*/
 
 }
