@@ -26,10 +26,7 @@ function Person(name, item, race){
     this.maxHealing = 30;
     this.dodgeChance = 8;
     this.critChance = 16;
-    this.attack = function (target) {
-        let damage = 20;
-        target.currentHealth -= damage;
-    }
+    
     
 
     switch (true) { //assigns statistics based on race and item carried
