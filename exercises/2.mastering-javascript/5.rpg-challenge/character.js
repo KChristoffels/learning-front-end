@@ -189,6 +189,8 @@ function generatePlayers(event) {
     playerContainer.push(player1);
     playerContainer.push(player2);
 
+    console.log(playerContainer);
+
     let playerHeader1 = document.getElementById(`playerHeader1`);
     let playerHeader2 = document.getElementById(`playerHeader2`);
 
@@ -308,6 +310,7 @@ function generatePlayers(event) {
                 delete player2[prop];
             });
             document.body.appendChild(el);
+            playerContainer.length = 0;
             
         } else {
             el.innerHTML = `${playerContainer[1].name} has forfeited the game. Resetting`;
@@ -320,7 +323,7 @@ function generatePlayers(event) {
                 delete player2[prop];
             });
             document.body.appendChild(el);
-            
+            playerContainer.length = 0;            
         }
 
         setTimeout(function(){el.parentNode.removeChild(el);},3000);
@@ -341,17 +344,13 @@ function generatePlayers(event) {
         let currentPlayer;
         let otherPlayer;
         let otherHealthbar;
-        let otherHealth;
-
-        
+        let otherHealth;        
 
         if (event.target.id == `attack1`) {
             currentPlayer = player1;
             otherPlayer = player2;
             otherHealthbar = healthBar2;
-            otherHealth = currentHealth2;
-
-            
+            otherHealth = currentHealth2;            
 
             attack2.style.pointerEvents = `auto`;
             heal2.style.pointerEvents = `auto`;
